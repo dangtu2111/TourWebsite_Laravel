@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('fullName')->nullable(); // Tên đầy đủ
             $table->string('phoneNumber')->nullable(); // Số điện thoại
             $table->string('address')->nullable(); // Số điện thoại
+            $table->string('status')->nullable(); // Số điện thoại
             $table->timestamps(); // Thêm created_at và updated_at
         });
 
@@ -64,10 +65,14 @@ return new class extends Migration
             $table->date('endDate')->nullable(); // Ngày kết thúc tour
             $table->timestamps(); // created_at và updated_at
         });
-
+       
         // Tạo bảng tbl_booking
         Schema::create('tbl_booking', function (Blueprint $table) {
             $table->id('bookingId'); // khóa chính tự tăng
+            $table->string('address'); // cột password
+            $table->string('fullName')->nullable(); // Tên đầy đủ
+            $table->string('email')->nullable(); // cột email, nullable
+            $table->string('phoneNumber')->nullable(); // Số điện thoại
             $table->unsignedBigInteger('tourId'); // Sử dụng unsignedBigInteger để khóa ngoại
             $table->unsignedBigInteger('userId'); // Sử dụng unsignedBigInteger để khóa ngoại
             $table->foreign('userId')->references('userId')->on('tbl_users'); // Khóa ngoại đến bảng tbl_tours
@@ -76,16 +81,15 @@ return new class extends Migration
             $table->integer('numChildren')->default(0);
             $table->decimal('totalPrice', 10, 2)->default(0);
             $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
-            $table->date('bookingDate'); // Ngày đặt tour
-            $table->string('customerName'); // Tên khách hàng
-            $table->string('customerEmail'); // Email khách hàng
+            $table->date('bookingDate')->default(DB::raw('CURRENT_DATE'));
             $table->timestamps(); // created_at và updated_at
         });
 
         // Tạo bảng tbl_contact
         Schema::create('tbl_contact', function (Blueprint $table) {
             $table->id('contactId'); // khóa chính tự tăng
-            $table->string('name'); // Tên người liên hệ
+            $table->string('fullName'); // Tên người liên hệ
+            $table->string('phoneNumber')->nullable(); // Tên người liên hệ
             $table->string('email'); // Email người liên hệ
             $table->text('message'); // Tin nhắn người liên hệ gửi
             $table->enum('isReply', ['y', 'n'])->default('n'); // Trạng thái trả lời (y = đã trả lời, n = chưa trả lời)
@@ -96,7 +100,7 @@ return new class extends Migration
             $table->unsignedBigInteger('bookingId'); // Khóa ngoại tới bảng tbl_booking
             $table->decimal('amount', 10, 2); // Số tiền thanh toán
             $table->string('paymentMethod'); // Phương thức thanh toán
-            $table->enum('paymentStatus', ['pending', 'completed', 'failed'])->default('pending'); // Trạng thái thanh toán
+            $table->string('paymentStatus')->default('pending'); // Trạng thái thanh toán
             $table->timestamps();
 
             // Định nghĩa khóa ngoại

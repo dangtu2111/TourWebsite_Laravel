@@ -89,14 +89,7 @@ class ToursManagementController extends Controller
         try {
             $image = $request->file('image');
             $tourId = $request->tourId;
-            return response()->json([
-                'success' => true,
-                'message' => 'Image uploaded successfully',
-                'data' => [
-                    'filename' => "xxxxx",
-                    'tourId' => "tourId"
-                ]
-            ], 200);
+           
             // Kiểm tra xem file có hợp lệ không
             if (!$image->isValid()) {
                 return response()->json(['error' => false, 'message' => 'Invalid file upload'], 400);
