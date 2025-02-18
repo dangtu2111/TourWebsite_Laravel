@@ -39,7 +39,7 @@
                             <div class="content">
                                 <h5>Cần trợ giúp và hỗ trợ</h5>
                                 <div class="text"><i class="far fa-envelope"></i> <a
-                                        href="mailto:minhdien.dev@gmail.com">minhdien.dev@gmail.com</a></div>
+                                        href="mailto:anhtuhanam1@gmail.com">anhtuhanam1@gmail.com</a></div>
                             </div>
                         </div>
                     </div>

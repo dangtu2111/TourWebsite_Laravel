@@ -37,7 +37,7 @@
                         470 Trần Đại Nghĩa<br>
                         Ngũ Hành Sơn, Đà Nẵng<br>
                         Phone: 1 (804) 123-9876<br>
-                        Email: minhdien.dev@gmail.com
+                        Email: anhtuhanam1@gmail.com
                     </address>
                 </div>
                 <br>
