@@ -81,7 +81,8 @@ return new class extends Migration
             $table->integer('numChildren')->default(0);
             $table->decimal('totalPrice', 10, 2)->default(0);
             $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
-            $table->date('bookingDate')->default(DB::raw('CURRENT_DATE'));
+            // $table->date('bookingDate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('bookingDate')->nullable();
             $table->timestamps(); // created_at và updated_at
         });
 
