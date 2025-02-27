@@ -62,7 +62,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-dien.jpg') }}" alt="Guide">
+                    <img src="https://scontent.fhan3-2.fna.fbcdn.net/v/t39.30808-1/467113856_2244577895941515_5457364378752337967_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6noDJWTkeLEQ7kNvgGX_pUj&_nc_oc=AdiIaSn6ThvIij0bESh13StJlTIXowZZWaaEMoNYf3y5Rzal4qHrt4TA5qDc7yPI3Kg&_nc_zt=24&_nc_ht=scontent.fhan3-2.fna&_nc_gid=A_CrGu1UsBlrVQetm0L052J&oh=00_AYB3rwRnzEFUOcq1rJG9fJ7i45lHk8IoO-mY-3k5nAZAjg&oe=67C57D42" alt="Guide">
                     <div class="content">
                         <h6>DEV DIEN</h6>
                         <span class="designation">Founder</span>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-ngan.jpg') }}" alt="Guide">
+                    <img src="https://scontent.fhan3-2.fna.fbcdn.net/v/t39.30808-1/467113856_2244577895941515_5457364378752337967_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6noDJWTkeLEQ7kNvgGX_pUj&_nc_oc=AdiIaSn6ThvIij0bESh13StJlTIXowZZWaaEMoNYf3y5Rzal4qHrt4TA5qDc7yPI3Kg&_nc_zt=24&_nc_ht=scontent.fhan3-2.fna&_nc_gid=A_CrGu1UsBlrVQetm0L052J&oh=00_AYB3rwRnzEFUOcq1rJG9fJ7i45lHk8IoO-mY-3k5nAZAjg&oe=67C57D42" alt="Guide">
                     <div class="content">
                         <h6>BAO NGAN</h6>
                         <span class="designation">Co-founder</span>
