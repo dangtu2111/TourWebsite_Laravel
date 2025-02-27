@@ -323,7 +323,7 @@ $(document).ready(function () {
         // Khởi tạo Dropzone
         Dropzone.autoDiscover = false; // Ngăn Dropzone tự động init
         dropzoneOldImages = new Dropzone("#myDropzone-listTour", {
-            url: "http://127.0.0.1:8000/admin/add-temp-images", // URL upload ảnh
+            url: "http://danganhtu.id.vn.1:8000/admin/add-temp-images", // URL upload ảnh
             method: "post",
             paramName: "image",
             acceptedFiles: "image/*",
