@@ -111,7 +111,7 @@ class LoginController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Thông tin tài khoản không chính xác!',
+                'message' => 'Thông tin tài khoản không chính xác!'.$user_login,
             ]);
         }
     }
