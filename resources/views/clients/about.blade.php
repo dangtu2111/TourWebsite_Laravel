@@ -156,15 +156,15 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-dien.jpg') }}" alt="Guide">
+                    <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-1/467113856_2244577895941515_5457364378752337967_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeH3t91WlZH8oOHygZZqEa2_xyiIhONW_i3HKIiE41b-LcImVWBEEW7k-HYLPduiC-BrlNyPby1R2NyYkMZlfut1&_nc_ohc=-T6gJPZXuNIQ7kNvwHOtqyA&_nc_oc=AdlXKasw70VseKksYL4yaNN--5tOJRiM2xafjDkXdv_LwSDwNm5mvC-J1GMhJHx35eY&_nc_zt=24&_nc_ht=scontent.fsgn2-3.fna&_nc_gid=Qv66nRkmI4QWd1kPhaUVug&oh=00_AfF95AcIgjOA7jcC2h2FByJNBTiSm-l_YeK-cQFhCFgilw&oe=67F95842" alt="Guide">
                     <div class="content">
-                        <h6>NGUYEN MINH DIEN</h6>
+                        <h6>DANG ANH TU</h6>
                         <span class="designation">Founder</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/dienne.dev"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/nong.than.944"><i class="fab fa-facebook-f"></i></a>
                             <a href="contact.html"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/@dienne248"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.youtube.com/#"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -172,15 +172,15 @@
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500"
                     data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-ngan.jpg') }}" alt="Guide">
+                    <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-1/467113856_2244577895941515_5457364378752337967_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeH3t91WlZH8oOHygZZqEa2_xyiIhONW_i3HKIiE41b-LcImVWBEEW7k-HYLPduiC-BrlNyPby1R2NyYkMZlfut1&_nc_ohc=-T6gJPZXuNIQ7kNvwHOtqyA&_nc_oc=AdlXKasw70VseKksYL4yaNN--5tOJRiM2xafjDkXdv_LwSDwNm5mvC-J1GMhJHx35eY&_nc_zt=24&_nc_ht=scontent.fsgn2-3.fna&_nc_gid=Qv66nRkmI4QWd1kPhaUVug&oh=00_AfF95AcIgjOA7jcC2h2FByJNBTiSm-l_YeK-cQFhCFgilw&oe=67F95842" alt="Guide">
                     <div class="content">
-                        <h6>BAO NGAN</h6>
+                        <h6>DUONG NGOC NGUYEN</h6>
                         <span class="designation">Co-founder</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/dienne.dev"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/nong.than.944"><i class="fab fa-facebook-f"></i></a>
                             <a href="contact.html"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/@dienne248"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.youtube.com/#"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
