@@ -109,7 +109,7 @@ return new class extends Migration
         });
         Schema::create('tbl_timeline', function (Blueprint $table) {
             $table->id('timeLineId');
-            $table->timestamp('event_date');
+            $table->timestamp('event_date')->nullable();
             $table->unsignedBigInteger('tourId'); // thêm cột tourId
             $table->string('title'); 
             $table->text('description')->nullable();
