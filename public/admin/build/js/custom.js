@@ -2368,7 +2368,9 @@ function init_SmartWizard() {
     if ($("#myDropzone").length) {
         // Khởi tạo Dropzone cho bước 2
         var myDropzone = new Dropzone("#myDropzone", {
+
             url: "http://3.27.17.250/admin/add-images-tours",
+
             paramName: "image",
             maxFilesize: 5,
             acceptedFiles: "image/*",

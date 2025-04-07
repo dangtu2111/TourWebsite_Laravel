@@ -62,9 +62,9 @@
         <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-dien.jpg') }}" alt="Guide">
+                    <img src="{{ asset('clients/assets/images/team/guide1.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>DEV DIEN</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Founder</span>
                         <div class="social-style-one inner-content">
                             <a href="https://www.facebook.com/dienne.dev"><i class="fab fa-twitter"></i></a>
@@ -77,9 +77,9 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
-                    <img src="{{ asset('clients/assets/images/team/guide-ngan.jpg') }}" alt="Guide">
+                    <img src="{{ asset('clients/assets/images/team/guide1.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>BAO NGAN</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Co-founder</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
@@ -94,7 +94,7 @@
                 <div class="team-item hover-content" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
                     <img src="{{ asset('clients/assets/images/team/guide1.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>MINH TOAN</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Travel Guide</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
@@ -110,7 +110,7 @@
                     data-aos-offset="50">
                     <img src="{{ asset('clients/assets/images/team/guide2.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>TRONG HAI</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Senior Guide</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
@@ -126,7 +126,7 @@
                     data-aos-duration="1500" data-aos-offset="50">
                     <img src="{{ asset('clients/assets/images/team/guide3.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>NGOC THU</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Travel Guide</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
@@ -142,7 +142,7 @@
                     data-aos-duration="1500" data-aos-offset="50">
                     <img src="{{ asset('clients/assets/images/team/guide4.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>DUC ANH</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Travel Guide</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
@@ -158,7 +158,7 @@
                     data-aos-offset="50">
                     <img src="{{ asset('clients/assets/images/team/guide5.jpg') }}" alt="Guide">
                     <div class="content">
-                        <h6>THANH NHAN</h6>
+                        <h6>DEV ANH TU</h6>
                         <span class="designation">Co-founder</span>
                         <div class="social-style-one inner-content">
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>

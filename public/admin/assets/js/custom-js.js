@@ -324,6 +324,7 @@ $(document).ready(function () {
         Dropzone.autoDiscover = false; // Ngăn Dropzone tự động init
         dropzoneOldImages = new Dropzone("#myDropzone-listTour", {
             url: "http://3.27.17.250/admin/add-temp-images", // URL upload ảnh
+
             method: "post",
             paramName: "image",
             acceptedFiles: "image/*",
