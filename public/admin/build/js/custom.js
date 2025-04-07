@@ -2369,7 +2369,7 @@ function init_SmartWizard() {
         // Khởi tạo Dropzone cho bước 2
         var myDropzone = new Dropzone("#myDropzone", {
 
-            url: "http://127.0.0.1:8000/admin/add-images-tours",
+            url: "http://3.27.17.250/admin/add-images-tours",
 
             paramName: "image",
             maxFilesize: 5,

@@ -22,6 +22,7 @@ class ToursController extends Controller
         $title = 'Tours';
         $tours = $this->tours->getAllTours(9);
         $domain = $this->tours->getDomain();
+        
         // dd($tours);
         $domainsCount = [
             'mien_bac' => optional($domain->firstWhere('domain', 'b'))->count,
