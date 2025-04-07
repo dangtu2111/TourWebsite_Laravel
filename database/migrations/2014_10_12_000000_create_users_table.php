@@ -115,6 +115,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('event')->nullable()->change();
             $table->timestamps();
+            $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade');
         });
         Schema::create('tbl_images', function (Blueprint $table) {
             $table->increments('id');
@@ -122,7 +123,7 @@ return new class extends Migration
             $table->string('imageURL'); // Cột lưu trữ URL của hình ảnh
             $table->text('description')->nullable(); // Mô tả cho hình ảnh, có thể null
             $table->timestamps(); // created_at và updated_at
-
+            $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade');
         });
         Schema::create('tbl_reviews', function (Blueprint $table) {
             $table->id('reviewId'); // Khóa chính tự tăng

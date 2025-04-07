@@ -51,19 +51,19 @@ class ToursModel extends Model
         // Xóa các dữ liệu liên quan trong bảng 'tbl_timeline' và 'tbl_images'
         $deleteTimeLine = DB::table('tbl_timeline')->where('tourId', $tourId)->delete();
         $deleteImages = DB::table('tbl_images')->where('tourId', $tourId)->delete();
-
-        if ($deleteTimeLine && $deleteImages) {
-            $deleteTour = DB::table($this->table)->where('tourId', $tourId)->delete();
-
-            // Trả về kết quả xóa tour
-            if ($deleteTour) {
-                return ['success' => true, 'message' => 'Tour đã được xóa thành công.'];
+        $deleteTour = DB::table($this->table)->where('tourId', $tourId)->delete();
+        if ($deleteTour) {
+            
+            if ($deleteTimeLine && $deleteImages) {
+                // Trả về kết quả xóa tour
+                return ['success' => true, 'message' => 'Tour đã được xóa thành công. Cùng timeline và image'];
             } else {
-                return ['success' => false, 'message' => 'Không thể xóa tour chính.'];
+                return ['success' => true, 'message' => 'Không thể xóa các dữ liệu liên quan (timeline, images).'];
             }
         } else {
-            return ['success' => false, 'message' => 'Không thể xóa các dữ liệu liên quan (timeline, images).'];
+            return ['success' => false, 'message' => 'Không thể xóa tour chính.'];
         }
+        
     }
 
     public function getTour($tourId){
