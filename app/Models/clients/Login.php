@@ -47,7 +47,6 @@ class Login extends Model
         ->where('username', $account['username'])
         ->where('password', $account['password'])
         ->first();
-        dd($getUser);
         return $getUser;
     }
 
