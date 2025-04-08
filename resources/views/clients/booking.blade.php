@@ -149,9 +149,9 @@
                 <div id="paypal-button-container"></div>
 
                 <button type="submit" class="booking-btn btn-submit-booking">Xác Nhận</button>
-
+<!-- 
                 <button id="btn-momo-payment" class="booking-btn" style="display: none;"
-                    data-urlmomo = "{{ route('createMomoPayment') }}">Thanh toán với Momo <img src="{{ asset('clients/assets/images/booking/icon-thanh-toan-momo.png') }}" alt="" style="width: 10%"></button>
+                    data-urlmomo = "{{ route('createMomoPayment') }}">Thanh toán với Momo <img src="{{ asset('clients/assets/images/booking/icon-thanh-toan-momo.png') }}" alt="" style="width: 10%"></button> -->
 
             </div>
         </div>
