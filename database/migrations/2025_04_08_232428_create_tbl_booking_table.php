@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_booking', function (Blueprint $table) {
-            $table->enum('bookingStatus', ['y', 'f', 'c','b'])->default('f')->change();
+        Schema::create('tbl_booking', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_booking', function (Blueprint $table) {
-            $table->enum('bookingStatus', ['pending', 'confirmed', 'cancelled'])->default('pending')->change();
-        });
+        Schema::dropIfExists('tbl_booking');
     }
 };
