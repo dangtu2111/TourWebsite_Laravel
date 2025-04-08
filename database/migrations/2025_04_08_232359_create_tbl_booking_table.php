@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
             // $table->date('bookingDate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('bookingDate')->nullable();
+            
             $table->timestamps(); // created_at và updated_at
         });
         Schema::create('tbl_checkout', function (Blueprint $table) {
@@ -37,6 +38,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2); // Số tiền thanh toán
             $table->string('paymentMethod'); // Phương thức thanh toán
             $table->string('paymentStatus')->default('pending'); // Trạng thái thanh toán
+            $table->dateTime('paymentDate')->nullable();
             $table->timestamps();
 
             // Định nghĩa khóa ngoại

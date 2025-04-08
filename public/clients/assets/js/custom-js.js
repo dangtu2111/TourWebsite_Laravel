@@ -1,5 +1,61 @@
 $(document).ready(function () {
+    $(".form_discount_add").click(function(event) {
+        event.preventDefault(); // Ngăn chặn form gửi dữ liệu theo cách mặc định
+        
+        var discountCode = $(this).siblings(".field-input-wrapper").find(".field-input").val(); // Lấy giá trị mã giảm giá
+        var _token = $('meta[name="csrf-token"]').attr("content");
 
+        // Kiểm tra xem mã giảm giá có được nhập không
+        if (!discountCode) {
+            alert("Vui lòng nhập mã giảm giá!");
+            return;
+        }
+
+        // Gửi request AJAX
+        $.ajax({
+            url: "{{ route('promotion.checkDiscount') }}", // Đường dẫn đến API kiểm tra mã giảm giá
+            method: "POST",
+            data: {
+                discount_code: discountCode,
+                _token: _token // Bảo vệ CSRF
+            },
+            beforeSend: function() {
+                $(".btn-spinner").show(); // Hiển thị icon loading (nếu có)
+            },
+            success: function(response) {
+                if (response.success) {
+                    let discountAmount = response.discount_amount;
+
+                    // Xóa dòng giảm giá cũ (nếu có)
+                    $(".total-line-discount").remove();
+
+                    // Tạo dòng hiển thị số tiền giảm giá
+                    let discountRow = `
+                        <tr class="total-line total-line-discount">
+                            <td class="total-line-name">Giảm giá</td>
+                            <td class="total-line-price">
+                                <span class="order-summary-emphasis"  data-checkout-total-discount-target="${discountAmount}">
+                                    -${discountAmount}₫
+                                </span>
+                            </td>
+                        </tr>`;
+
+                    // Chèn vào trước dòng "Tổng cộng"
+                    $(".total-line-table-footer").before(discountRow);
+
+                    calculateTotal();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert("Đã xảy ra lỗi, vui lòng thử lại!");
+            },
+            complete: function() {
+                $(".btn-spinner").hide(); // Ẩn icon loading sau khi xử lý xong
+            }
+        });
+    });
     var sqlInjectionPattern = /[<>'"%;()&+]/;
 
     /****************************************

@@ -24,7 +24,7 @@ use App\Http\Controllers\clients\MyTourController;
 use App\Http\Controllers\clients\PayPalController;
 use App\Http\Controllers\clients\SearchController;
 use App\Http\Controllers\clients\TourBookedController;
-
+use App\Http\Controllers\VoucherController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,7 +100,17 @@ Route::post('/create-contact', [ContactController::class, 'createContact'])->nam
 Route::get('/search', [SearchController::class, 'index'])->name(name: 'search');
 Route::get('/search-voice-text', [SearchController::class, 'searchTours'])->name('search-voice-text');
 
+// Routes cho web
+Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
+Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
+Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
+Route::get('/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+Route::put('/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
+Route::delete('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
 
+// Route kiểm tra và áp dụng voucher
+Route::post('/vouchers/apply', [VoucherController::class, 'apply'])->name('vouchers.apply');
 //ADMIN
 // Routes without middleware
 Route::prefix('admin')->group(function () {
