@@ -18,10 +18,15 @@ class Login extends Model
         return DB::table($this->table)->insert($data);
     }
     public function registerAcountGoogle($data)
-    {   $existingUser = DB::table($this->table)->where('email', $data['email'])->first();
+    {
+        $existingUser = DB::table($this->table)->where('email', $data['email'])->first();
 
         if ($existingUser) {
-            return false;
+            // Cập nhật google_id nếu user đã tồn tại
+            DB::table($this->table)
+                ->where('email', $data['email'])
+                ->update(['google_id' => $data['google_id']]);
+            return DB::table($this->table)->where('email', $data['email'])->first();
         }
         return DB::table($this->table)->insert($data);
     }
@@ -31,13 +36,14 @@ class Login extends Model
         $check = DB::table($this->table)
             ->where('username', $username)
             ->orWhere('email', $email)
-            ->exists(); 
+            ->exists();
 
         return $check;
     }
 
     // Kiểm tra người dùng tồn tại theo token kích hoạt
-    public function getUserByToken($token){
+    public function getUserByToken($token)
+    {
         return DB::table($this->table)->where('activation_token', $token)->first();
     }
 
@@ -52,17 +58,18 @@ class Login extends Model
     public function login($account)
     {
         $getUser = DB::table($this->table)
-        ->where('username', $account['username'])
-        ->where('password', $account['password'])
-        ->first();
+            ->where('username', $account['username'])
+            ->where('password', $account['password'])
+            ->first();
         return $getUser;
     }
 
 
     //Login with google
-    public function checkUserExistGoogle($google_id){
+    public function checkUserExistGoogle($google_id)
+    {
         $check = DB::table($this->table)
-        ->where('google_id', $google_id)->first();
+            ->where('google_id', $google_id)->first();
 
         return $check;
     }
