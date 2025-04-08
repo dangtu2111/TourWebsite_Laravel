@@ -39,7 +39,8 @@ class LoginGoogleController extends Controller
                     'email' => $user->email,
                     'isActive' => 'y'
                 ];
-                $newUser = $this->user->registerAcount($data_google);
+
+                $newUser = $this->user->registerAcountGoogle($data_google);
                 // Kiểm tra xem $newUser có hợp lệ không
                 if ($newUser && isset($newUser->username)) {
                     // Lưu thông tin người dùng mới vào session

@@ -17,6 +17,14 @@ class Login extends Model
     {
         return DB::table($this->table)->insert($data);
     }
+    public function registerAcountGoogle($data)
+    {   $existingUser = DB::table($this->table)->where('email', $data['email'])->first();
+
+        if ($existingUser) {
+            return false;
+        }
+        return DB::table($this->table)->insert($data);
+    }
     //Kiểm tra username or email người dùng đã tồn tại hay chưa return true false
     public function checkUserExist($username, $email)
     {
