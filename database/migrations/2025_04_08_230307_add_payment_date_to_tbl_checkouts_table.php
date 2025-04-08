@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_checkouts', function (Blueprint $table) {
+        Schema::table('tbl_checkout', function (Blueprint $table) {
             $table->dateTime('paymentDate')->nullable();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_checkouts', function (Blueprint $table) {
+        Schema::table('tbl_checkout', function (Blueprint $table) {
             $table->dropColumn('paymentDate');
         });
     }
