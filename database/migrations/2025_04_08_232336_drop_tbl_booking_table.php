@@ -8,6 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::dropIfExists('tbl_booking');
+        Schema::dropIfExists('tbl_checkout');
+
     }
 
     public function down(): void
