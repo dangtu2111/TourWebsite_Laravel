@@ -7,7 +7,7 @@
                 <div class="col-xl-5 col-lg-6" data-aos="fade-up" data-aos-duration="1500" data-aos-offset="50">
                     <div class="footer-widget footer-text">
                         <div class="footer-logo mb-25">
-                            <a href="index.html"><img src="{{ asset('clients/assets/images/logos/logo.png') }}"
+                            <a href="{{ route('home') }}"><img src="{{ asset('clients/assets/images/logos/logo.png') }}"
                                     alt="Logo"></a>
                         </div>
                         <p>Chúng tôi biên soạn các hành trình riêng biệt phù hợp với sở thích của bạn, đảm bảo mọi
