@@ -22,7 +22,7 @@ class CreateVouchersTable extends Migration
             $table->timestamps();
         });
         Schema::table('tbl_checkouts', function (Blueprint $table) {
-            $table->dateTime('paymentDate')->nullable()->after('some_column'); // Đặt tên cột sau 1 cột nào đó nếu muốn
+            $table->dateTime('paymentDate')->nullable(); // Đặt tên cột sau 1 cột nào đó nếu muốn
         });
     }
 
