@@ -673,7 +673,8 @@ $(document).ready(function () {
 
                             // Vô hiệu hóa tất cả các radio button
                             $('input[name="payment"]').prop("disabled", true);
-
+                            
+                            
                             $(".btn-submit-booking").show(); // Hiện nút xác nhận
                         });
                     },
