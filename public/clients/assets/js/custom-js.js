@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var sqlInjectionPattern = /[<>'"%;()&+]/;
 
     /****************************************
@@ -35,7 +36,7 @@ $(document).ready(function () {
         }
 
         // Kiểm tra tên đăng nhập và mật khẩu không chứa ký tự đặc biệt (SQL injection)
-
+        
         if (sqlInjectionPattern.test(userName)) {
             isValid = false;
             $("#validate_username")
@@ -269,6 +270,7 @@ $(document).ready(function () {
         $('input[name="filter_star"]').prop("checked", false);
         $('input[name="duration"]').prop("checked", false);
 
+        
         var url = $(this).attr("href");
 
         $.ajax({
@@ -671,24 +673,8 @@ $(document).ready(function () {
 
                             // Vô hiệu hóa tất cả các radio button
                             $('input[name="payment"]').prop("disabled", true);
-                            const form = $(".booking-container form");
 
-                            if (
-                                form.find('input[name="bookingStatus"]')
-                                    .length === 0
-                            ) {
-                                $("<input>")
-                                    .attr({
-                                        type: "hidden",
-                                        name: "bookingStatus",
-                                        value: "pending", // Giá trị mặc định
-                                    })
-                                    .appendTo(form);
-                            }
-
-                            form.submit(); // Submit form chính xác
-
-                            // $(".btn-submit-booking").show(); // Hiện nút xác nhận
+                            $(".btn-submit-booking").show(); // Hiện nút xác nhận
                         });
                     },
                     onError: function (err) {
@@ -874,7 +860,7 @@ $(document).ready(function () {
                                 );
                                 // Xử lý reset form hoặc thông báo
                                 $("#message").val("");
-                                $("#comment-form").hide();
+                                $('#comment-form').hide();
                                 resetStars();
                                 currentRating = 0;
                             }
@@ -901,28 +887,26 @@ $(document).ready(function () {
      *             PAGE CONTACT             *
      * ***************************************/
 
-    $("#contactForm").submit(function (event) {
+
+    $('#contactForm').submit(function (event) {
         event.preventDefault();
 
-        var name = $("#name").val();
-        var phoneNumber = $("#phone_number").val();
-        var message = $("#message").val();
+        var name = $('#name').val();
+        var phoneNumber = $('#phone_number').val();
+        var message = $('#message').val();
 
-        $(".error").remove();
+        $('.error').remove();
 
         if (sqlInjectionPattern.test(name)) {
-            $("#name").after(
-                '<span class="error" style="color: red;">Vui lòng nhập tên hợp lệ và không chứa ký tự đặc biệt.</span>'
-            );
+            $('#name').after('<span class="error" style="color: red;">Vui lòng nhập tên hợp lệ và không chứa ký tự đặc biệt.</span>');
             return false;
         }
 
         if (sqlInjectionPattern.test(phoneNumber)) {
-            $("#phone_number").after(
-                '<span class="error" style="color: red;">Vui lòng nhập số điện thoại hợp lệ và không chứa ký tự đặc biệt.</span>'
-            );
+            $('#phone_number').after('<span class="error" style="color: red;">Vui lòng nhập số điện thoại hợp lệ và không chứa ký tự đặc biệt.</span>');
             return false;
         }
+
 
         this.submit();
     });
@@ -930,22 +914,22 @@ $(document).ready(function () {
      *             HANDLE SEARCH            *
      * ***************************************/
 
-    $("#search_form").on("submit", function (event) {
+    $('#search_form').on('submit', function(event) {
         // Lấy giá trị các trường cần kiểm tra
-        var destination = $("#destination").val();
-        var startDate = $("#start_date").val();
-        var endDate = $("#end_date").val();
+        var destination = $('#destination').val();
+        var startDate = $('#start_date').val();
+        var endDate = $('#end_date').val();
 
         if (destination === "") {
             event.preventDefault();
-            toastr.error("Vui lòng chọn điểm đến.");
+            toastr.error('Vui lòng chọn điểm đến.');
             return;
         }
 
         // Chuyển đổi định dạng ngày từ DD/MM/YYYY sang YYYY-MM-DD
         function convertDateFormat(date) {
-            var parts = date.split("/");
-            return parts[2] + "-" + parts[1] + "-" + parts[0];
+            var parts = date.split('/');
+            return parts[2] + '-' + parts[1] + '-' + parts[0];
         }
 
         if (startDate && endDate) {
@@ -955,50 +939,44 @@ $(document).ready(function () {
             // Kiểm tra nếu "start_date" lớn hơn "end_date"
             if (startDateFormatted > endDateFormatted) {
                 event.preventDefault();
-                toastr.error("Ngày khởi hành không thể lớn hơn ngày kết thúc.");
+                toastr.error('Ngày khởi hành không thể lớn hơn ngày kết thúc.');
                 return;
             }
         }
     });
 
+
     /****************************************
      *  HANDLE SEARCH Speech Recognition    *
      * ***************************************/
 
-    // Kiểm tra nếu trình duyệt hỗ trợ Speech Recognition
-    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-        var recognition = new (window.SpeechRecognition ||
-            window.webkitSpeechRecognition)();
-        recognition.lang = "vi-VN"; // Cài đặt ngôn ngữ nhận diện
+     // Kiểm tra nếu trình duyệt hỗ trợ Speech Recognition
+     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'vi-VN'; // Cài đặt ngôn ngữ nhận diện
         recognition.continuous = true; // Tiếp tục nhận diện khi đang nói
         recognition.interimResults = true; // Hiển thị kết quả tạm thời khi nhận diện
-
+    
         // Biến để theo dõi trạng thái nhận diện
         var isRecognizing = false;
-
-        $("#voice-search").on("click", function () {
+    
+        $('#voice-search').on('click', function() {
             if (isRecognizing) {
                 recognition.stop(); // Dừng nhận diện nếu đang nhận diện
-                $(this)
-                    .removeClass("fa-microphone-slash")
-                    .addClass("fa-microphone"); // Đổi icon về micro
+                $(this).removeClass('fa-microphone-slash').addClass('fa-microphone'); // Đổi icon về micro
             } else {
                 recognition.start(); // Bắt đầu nhận diện giọng nói
-                $(this)
-                    .removeClass("fa-microphone")
-                    .addClass("fa-microphone-slash"); // Đổi icon thành micro gạch
+                $(this).removeClass('fa-microphone').addClass('fa-microphone-slash'); // Đổi icon thành micro gạch
             }
         });
-
-        recognition.onstart = function () {
-            console.log("Speech recognition started");
+    
+        recognition.onstart = function() {
+            console.log('Speech recognition started');
             isRecognizing = true; // Đánh dấu trạng thái nhận diện
-            $("#voice-search")
-                .removeClass("fa-microphone")
-                .addClass("fa-microphone-slash"); // Đổi icon thành micro gạch
+            $('#voice-search').removeClass('fa-microphone').addClass('fa-microphone-slash'); // Đổi icon thành micro gạch
         };
-
-        recognition.onresult = function (event) {
+    
+        recognition.onresult = function(event) {
             var transcript = event.results[0][0].transcript; // Lấy kết quả nhận diện
             if (event.results[0].isFinal) {
                 // Kết quả cuối cùng, điền vào ô tìm kiếm
@@ -1008,23 +986,21 @@ $(document).ready(function () {
                 $('input[name="keyword"]').val(transcript);
             }
         };
-
-        recognition.onerror = function (event) {
-            console.log("Speech recognition error", event.error);
-            toastr.error(
-                "Có lỗi xảy ra khi nhận diện giọng nói: " + event.error
-            );
+    
+        recognition.onerror = function(event) {
+            console.log('Speech recognition error', event.error);
+            toastr.error('Có lỗi xảy ra khi nhận diện giọng nói: ' + event.error);
         };
-
-        recognition.onend = function () {
-            console.log("Speech recognition ended");
-            $("#voice-search")
-                .removeClass("fa-microphone-slash")
-                .addClass("fa-microphone"); // Đổi icon về micro
+    
+        recognition.onend = function() {
+            console.log('Speech recognition ended');
+            $('#voice-search').removeClass('fa-microphone-slash').addClass('fa-microphone'); // Đổi icon về micro
             isRecognizing = false; // Đánh dấu trạng thái nhận diện kết thúc
         };
     } else {
-        console.log("Speech recognition not supported in this browser.");
-        toastr.error("Trình duyệt của bạn không hỗ trợ nhận diện giọng nói.");
+        console.log('Speech recognition not supported in this browser.');
+        toastr.error('Trình duyệt của bạn không hỗ trợ nhận diện giọng nói.');
     }
+    
+    
 });
