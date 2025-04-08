@@ -52,7 +52,7 @@ class LoginGoogleController extends Controller
                     return redirect()->intended('/');
                 } else {
                     // Nếu có lỗi khi đăng ký người dùng mới, xử lý lỗi
-                    return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình đăng ký người dùng mới');
+                    return redirect()->route('login')->with('error', 'Có lỗi xảy ra trong quá trình đăng ký người dùng mới');
                 }
             }
         } catch (Exception $e) {
