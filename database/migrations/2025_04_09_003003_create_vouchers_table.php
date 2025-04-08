@@ -22,9 +22,7 @@ class CreateVouchersTable extends Migration
             $table->boolean('is_active')->default(true); // Trạng thái hoạt động
             $table->timestamps();
         });
-        Schema::table('tbl_checkout', function (Blueprint $table) {
-            $table->dateTime('paymentDate')->nullable(); // Đặt tên cột sau 1 cột nào đó nếu muốn
-        });
+       
     }
 
     public function down()
