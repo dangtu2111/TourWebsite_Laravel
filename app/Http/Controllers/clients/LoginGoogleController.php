@@ -49,7 +49,7 @@ class LoginGoogleController extends Controller
                 if ($newUser && isset($newUser->username)) {
                     // Lưu thông tin người dùng mới vào session
                     session()->put('username', $newUser->username);
-                    return redirect()->intended('/');
+                    return redirect()->route('home');
                 } else {
                     // Nếu có lỗi khi đăng ký người dùng mới, xử lý lỗi
                     return redirect()->route('login')->with('error', 'Có lỗi xảy ra trong quá trình đăng ký người dùng mới');
