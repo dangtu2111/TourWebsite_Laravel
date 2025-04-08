@@ -8,7 +8,7 @@ class CreateVouchersTable extends Migration
 {
     public function up()
     {
-       
+        Schema::dropIfExists('vouchers');
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique(); // Mã voucher
