@@ -41,6 +41,10 @@ class LoginGoogleController extends Controller
                 ];
 
                 $newUser = $this->user->registerAcountGoogle($data_google);
+                if(!$newUser){
+                    return redirect()->back()->with('error', 'Email đã tồn tại ');
+
+                }
                 // Kiểm tra xem $newUser có hợp lệ không
                 if ($newUser && isset($newUser->username)) {
                     // Lưu thông tin người dùng mới vào session
