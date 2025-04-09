@@ -59,7 +59,11 @@ class BookingController extends Controller
             'phoneNumber' => $tel,
             'totalPrice' => $totalPrice
         ];
-
+        $tour=$this->tour->getTourDetail($tourId);
+        if ($tour->endDate<now()) {
+            toastr()->error('Tour đã diễn ra vui lòng đặt tour khác !');
+            return redirect()->back(); // Quay lại trang hiện tại nếu có lỗi
+        }
         $bookingId = $this->booking->createBooking($dataBooking);
 
         $dataCheckout = [
