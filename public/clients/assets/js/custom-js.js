@@ -686,7 +686,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         // Nếu tất cả đều hợp lệ, gửi form
-        if (validateBookingForm()) {
+        if (validateBookingForm()&&isStartDateValid()) {
             $(".booking-container").submit();
         }
     });
