@@ -688,6 +688,8 @@ $(document).ready(function () {
         // Nếu tất cả đều hợp lệ, gửi form
         if (validateBookingForm()&&isStartDateValid()) {
             $(".booking-container").submit();
+        }else{
+            alert('Tour kết thúc ');
         }
     });
 
