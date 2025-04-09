@@ -17,7 +17,7 @@ class DestinationController extends Controller
     {
         $title = 'Điểm đến';
         $tours = $this->tours->getAllTours( 9);
-        return view('clients.destination', compact(var_name: 'title','tours'));
+        return view('clients.destination', compact('title','tours'));
     }
 
     
