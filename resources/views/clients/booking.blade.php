@@ -107,7 +107,7 @@
                     <p>Mã tour : {{ $tour->tourId }}</p>
                     <input type="hidden" name="tourId" id="tourId" value="{{ $tour->tourId }}">
                     <h5 class="widget-title">{{ $tour->title }}</h5>
-                    <p>Ngày khởi hành : {{ date('d-m-Y', strtotime($tour->startDate)) }}</p>
+                    <p id="start_date">Ngày khởi hành : {{ date('d-m-Y', strtotime($tour->startDate)) }}</p>
                     <p>Ngày kết thúc : {{ date('d-m-Y', strtotime($tour->endDate)) }}</p>
                     <p class="quantityAvailable">Số chỗ còn nhận : {{ $tour->quantity }}</p>
                 </div>

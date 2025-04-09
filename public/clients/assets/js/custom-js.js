@@ -666,6 +666,21 @@ $(document).ready(function () {
         }
         return isValid; // Trả về kết quả kiểm tra
     }
+    function isStartDateValid() {
+        const startText = $("#start_date").text(); // Lấy nội dung trong <p>
+        const match = startText.match(/(\d{2})-(\d{2})-(\d{4})/); // Tách ngày tháng năm
+    
+        if (!match) return false;
+    
+        const [_, day, month, year] = match;
+        const startDate = new Date(`${year}-${month}-${day}T00:00:00`);
+        const today = new Date();
+        
+        // Xóa giờ phút giây của today để so sánh chuẩn
+        today.setHours(0, 0, 0, 0);
+    
+        return startDate >= today;
+    }
     // Kiểm tra tính hợp lệ khi nhấn nút submit
     $(".btn-submit-booking").on("click", function (e) {
         e.preventDefault();
