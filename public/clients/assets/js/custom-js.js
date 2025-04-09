@@ -12,49 +12,7 @@ $(document).ready(function () {
         }
 
         // Gửi request AJAX
-        $.ajax({
-            url: "{{ route('promotion.checkDiscount') }}", // Đường dẫn đến API kiểm tra mã giảm giá
-            method: "POST",
-            data: {
-                discount_code: discountCode,
-                _token: _token // Bảo vệ CSRF
-            },
-            beforeSend: function() {
-                $(".btn-spinner").show(); // Hiển thị icon loading (nếu có)
-            },
-            success: function(response) {
-                if (response.success) {
-                    let discountAmount = response.discount_amount;
-
-                    // Xóa dòng giảm giá cũ (nếu có)
-                    $(".total-line-discount").remove();
-
-                    // Tạo dòng hiển thị số tiền giảm giá
-                    let discountRow = `
-                        <tr class="total-line total-line-discount">
-                            <td class="total-line-name">Giảm giá</td>
-                            <td class="total-line-price">
-                                <span class="order-summary-emphasis"  data-checkout-total-discount-target="${discountAmount}">
-                                    -${discountAmount}₫
-                                </span>
-                            </td>
-                        </tr>`;
-
-                    // Chèn vào trước dòng "Tổng cộng"
-                    $(".total-line-table-footer").before(discountRow);
-
-                    calculateTotal();
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function() {
-                alert("Đã xảy ra lỗi, vui lòng thử lại!");
-            },
-            complete: function() {
-                $(".btn-spinner").hide(); // Ẩn icon loading sau khi xử lý xong
-            }
-        });
+        
     });
     var sqlInjectionPattern = /[<>'"%;()&+]/;
 
@@ -516,6 +474,7 @@ $(document).ready(function () {
         // Cập nhật hiển thị số lượng và giá tiền cho từng loại
         $(".quantity__adults").text(numAdults);
         $(".quantity__children").text(numChildren);
+        
         $(".summary-item:nth-child(1) .total-price").text(
             adultPrice.toLocaleString() + " VNĐ"
         );
@@ -584,25 +543,60 @@ $(document).ready(function () {
     $(".btn-coupon").on("click", function (e) {
         e.preventDefault();
         const couponCode = $(".order-coupon input").val();
-
-        // Giả sử mã giảm giá là "DISCOUNT10" giảm 10%
-        if (couponCode === "DISCOUNT10") {
-            discount =
-                0.1 *
-                (parseInt($("#numAdults").val()) *
-                    $("#numAdults").data("price-adults") +
-                    parseInt($("#numChildren").val()) *
-                        $("#numChildren").data("price-children"));
-            toastr.success("Áp dụng mã giảm giá thành công!");
-        } else {
-            discount = 0;
-            toastr.error("Mã giảm giá không hợp lệ!");
-        }
-
-        $(".summary-item:nth-child(3) .total-price").text(
-            discount.toLocaleString() + " VNĐ"
-        );
-        updateSummary();
+    
+        $.ajax({
+            url: "http://tuduxuan.luontuoivui.xyz/vouchers/apply", // Đường dẫn đến API kiểm tra mã giảm giá
+            method: "POST",
+            data: {
+                code: couponCode, // Sử dụng couponCode thay vì discountCode
+                _token: $('meta[name="csrf-token"]').attr('content') // Lấy token từ meta tag
+            },
+            beforeSend: function() {
+                $(".btn-spinner").show(); // Hiển thị icon loading
+            },
+            success: function(response) {
+                if (response.success) {
+                    toastr.success(response.message || "Áp dụng mã giảm giá thành công!");
+                    // Tính toán discount dựa trên dữ liệu từ server
+                    let discount = 0;
+                    if (response.discount_type === 'percent') {
+                        discount = response.discount / 100 * (
+                            parseInt($("#numAdults").val()) * $("#numAdults").data("price-adults") +
+                            parseInt($("#numChildren").val()) * $("#numChildren").data("price-children")
+                        );
+                    } else if (response.discount_type === 'fixed') {
+                        discount = response.discount;
+                    }
+    
+                    // Cập nhật UI
+                    $(".summary-item:nth-child(3) .total-price").text(
+                        discount.toLocaleString() + " VNĐ"
+                    );
+                    updateSummary();
+                } else {
+                    toastr.error(response.message || "Mã giảm giá không hợp lệ!");
+                    // Reset discount về 0 nếu mã không hợp lệ
+                    discount = 0;
+                    $(".summary-item:nth-child(3) .total-price").text(
+                        discount.toLocaleString() + " VNĐ"
+                    );
+                    updateSummary();
+                }
+            },
+            error: function(xhr) {
+                let errorMsg = xhr.responseJSON?.message || "Đã có lỗi xảy ra!";
+                toastr.error(errorMsg);
+                // Reset discount về 0 khi có lỗi
+                discount = 0;
+                $(".summary-item:nth-child(3) .total-price").text(
+                    discount.toLocaleString() + " VNĐ"
+                );
+                updateSummary();
+            },
+            complete: function() {
+                $(".btn-spinner").hide(); // Ẩn icon loading sau khi hoàn tất
+            }
+        });
     });
 
     // Sự kiện khi thay đổi trạng thái checkbox
