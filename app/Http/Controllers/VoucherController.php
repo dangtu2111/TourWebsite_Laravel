@@ -11,7 +11,7 @@ class VoucherController extends Controller
     public function index()
     {
         $vouchers = Voucher::all();
-        return view('vouchers.index', compact('vouchers'));
+        return view('admin.vouchers.index', compact('vouchers'));
     }
 
     public function create()
