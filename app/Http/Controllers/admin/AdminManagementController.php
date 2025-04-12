@@ -47,7 +47,7 @@ class AdminManagementController extends Controller
         ];
         
         $update = $this->admin->updateAdmin($dataUpdate);
-        dd( $dataUpdate,$update);
+        dd( $admin);
         $newinfo = $this->admin->getAdmin();
         if ($update) {
             return response()->json(
