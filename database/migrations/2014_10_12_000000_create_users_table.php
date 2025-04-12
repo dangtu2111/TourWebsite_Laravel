@@ -103,6 +103,7 @@ return new class extends Migration
             $table->string('paymentMethod'); // Phương thức thanh toán
             $table->string('paymentStatus')->default('pending'); // Trạng thái thanh toán
             $table->dateTime('paymentDate')->nullable();
+            $table->string('transactionId')->nullable()->after('paymentStatus');
             $table->timestamps();
 
             // Định nghĩa khóa ngoại
