@@ -68,11 +68,11 @@
                     <div class="ratting">
                         @for ($i = 0; $i < 5; $i++)
                             @if ($avgStar && $i < $avgStar)
-                                <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                             @else
-                                <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
                             @endif
-                        @endfor
+                            @endfor
 
                     </div>
                 </div>
@@ -133,23 +133,23 @@
                 <h3>Lịch trình</h3>
                 <div class="accordion-two mt-25 mb-60" id="faq-accordion-two">
                     @php
-                        $day = 1;
+                    $day = 1;
                     @endphp
                     @foreach ($tourDetail->timeline as $timeline)
-                        <div class="accordion-item">
-                            <h5 class="accordion-header">
-                                <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo{{ $timeline->timeLineId }}">
-                                    Ngày {{ $day++ }} - {{ $timeline->title }}
-                                </button>
-                            </h5>
-                            <div id="collapseTwo{{ $timeline->timeLineId }}" class="accordion-collapse collapse"
-                                data-bs-parent="#faq-accordion-two">
-                                <div class="accordion-body">
-                                    <p>{!! $timeline->description !!}</p>
-                                </div>
+                    <div class="accordion-item">
+                        <h5 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo{{ $timeline->timeLineId }}">
+                                Ngày {{ $day++ }} - {{ $timeline->title }}
+                            </button>
+                        </h5>
+                        <div id="collapseTwo{{ $timeline->timeLineId }}" class="accordion-collapse collapse"
+                            data-bs-parent="#faq-accordion-two">
+                            <div class="accordion-body">
+                                <p>{!! $timeline->description !!}</p>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
 
@@ -237,13 +237,30 @@
                                     </span>
                                 </li>
                             </ul>
-                            <button type="submit" class="theme-btn style-two w-100 mt-15 mb-5">
-                                <span data-hover="Đặt ngay">Đặt ngay</span>
-                                <i class="fal fa-arrow-right"></i>
-                            </button>
-                            <div class="text-center">
-                                <a href="{{ route('contact') }}">Bạn cần trợ giúp không?</a>
-                            </div>
+                            @php
+                            // Lấy ngày bắt đầu từ $tourDetail và ngày hiện tại
+                            $startDate = \Carbon\Carbon::parse($tourDetail->startDate);
+                            $now = \Carbon\Carbon::now();
+
+                            // Tính toán sự khác biệt giữa ngày bắt đầu và ngày hiện tại
+                            $diffInDays = $now->diffInDays($startDate, false); // false để tính sự khác biệt theo chiều ngược lại
+                            @endphp
+
+                            @if ($diffInDays < 7 && $startDate> $now)
+                            <button type="button" class="theme-btn style-two w-100 mt-15 mb-5">
+                                    <span data-hover="Đặt ngay">Đặt ngay</span>
+                                    <i class="fal fa-arrow-right"></i>
+                                </button>
+                                @else
+                                <button type="submit" class="theme-btn style-two w-100 mt-15 mb-5">
+                                    <span data-hover="Đặt ngay">Đặt ngay</span>
+                                    <i class="fal fa-arrow-right"></i>
+                                </button>
+                                @endif
+
+                                <div class="text-center">
+                                    <a href="{{ route('contact') }}">Bạn cần trợ giúp không?</a>
+                                </div>
                         </form>
                     </div>
 
@@ -258,32 +275,32 @@
                         </ul>
                     </div>
                     @if (!empty($tourRecommendations))
-                        <div class="widget widget-tour" data-aos="fade-up" data-aos-duration="1500"
-                            data-aos-offset="50">
-                            <h6 class="widget-title">Tours tương tự</h6>
-                            @foreach ($tourRecommendations as $tour)
-                                <div class="destination-item tour-grid style-three bgc-lighter">
-                                    <div class="image">
-                                        {{-- <span class="badge">10% Off</span> --}}
-                                        <img src="{{ asset('admin/assets/images/gallery-tours/' . $tour->images[0]) }}"
-                                            alt="Tour" style="max-height: 137px">
-                                    </div>
-                                    <div class="content">
-                                        <div class="destination-header">
-                                            <span class="location"><i class="fal fa-map-marker-alt"></i>
-                                                {{ $tour->destination }}</span>
-                                            <div class="ratting">
-                                                <i class="fas fa-star"></i>
-                                                <span>({{ $tour->rating }})</span>
-                                            </div>
-                                        </div>
-                                        <h6><a
-                                                href="{{ route('tour-detail', ['id' => $tour->tourId]) }}">{{ $tour->title }}</a>
-                                        </h6>
+                    <div class="widget widget-tour" data-aos="fade-up" data-aos-duration="1500"
+                        data-aos-offset="50">
+                        <h6 class="widget-title">Tours tương tự</h6>
+                        @foreach ($tourRecommendations as $tour)
+                        <div class="destination-item tour-grid style-three bgc-lighter">
+                            <div class="image">
+                                {{-- <span class="badge">10% Off</span> --}}
+                                <img src="{{ asset('admin/assets/images/gallery-tours/' . $tour->images[0]) }}"
+                                    alt="Tour" style="max-height: 137px">
+                            </div>
+                            <div class="content">
+                                <div class="destination-header">
+                                    <span class="location"><i class="fal fa-map-marker-alt"></i>
+                                        {{ $tour->destination }}</span>
+                                    <div class="ratting">
+                                        <i class="fas fa-star"></i>
+                                        <span>({{ $tour->rating }})</span>
                                     </div>
                                 </div>
-                            @endforeach
+                                <h6><a
+                                        href="{{ route('tour-detail', ['id' => $tour->tourId]) }}">{{ $tour->title }}</a>
+                                </h6>
+                            </div>
                         </div>
+                        @endforeach
+                    </div>
                     @endif
 
                 </div>
