@@ -37,7 +37,7 @@ return new class extends Migration
             $table->timestamps(); // created_at và updated_at
         });
         Schema::table('tbl_checkout', function (Blueprint $table) {
-            $table->foreign('bookingId')->references('id')->on('tbl_booking');
+            $table->foreign('bookingId')->references('bookingId')->on('tbl_booking')->onDelete('cascade');
         });
         
     }
