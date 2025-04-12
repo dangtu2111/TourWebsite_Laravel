@@ -20,7 +20,7 @@ class Login extends Model
     public function registerAcountGoogle($data)
     {
         $existingUser = DB::table($this->table)->where('email', $data['email'])->first();
-        dd($existingUser,DB::table($this->table)->insert($data));
+        
         if ($existingUser) {
             // Cập nhật google_id nếu user đã tồn tại
             DB::table($this->table)
@@ -28,8 +28,9 @@ class Login extends Model
                 ->update(['google_id' => $data['google_id']]);
             return DB::table($this->table)->where('email', $data['email'])->first();
         }
-        
-        return DB::table($this->table)->insert($data);
+        $id = DB::table($this->table)->insertGetId($data);
+        $createdUser = DB::table($this->table)->where('userId', $id)->first();
+        return $createdUser;
     }
     //Kiểm tra username or email người dùng đã tồn tại hay chưa return true false
     public function checkUserExist($username, $email)
