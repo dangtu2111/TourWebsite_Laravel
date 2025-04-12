@@ -13,33 +13,41 @@ return new class extends Migration
      */
     public function up()
     {
+        // Gỡ khóa ngoại trước khi xóa bảng booking (nếu tồn tại)
         Schema::table('tbl_checkout', function (Blueprint $table) {
             $table->dropForeign(['bookingId']);
         });
+
+        // Xóa bảng tbl_booking nếu đã tồn tại
         Schema::dropIfExists('tbl_booking');
+
+        // Tạo lại bảng tbl_booking với các cột cần thiết
         Schema::create('tbl_booking', function (Blueprint $table) {
-            $table->id('bookingId'); // khóa chính tự tăng
-            $table->string('address'); // cột password
-            $table->string('fullName')->nullable(); // Tên đầy đủ
-            $table->string('email')->nullable(); // cột email, nullable
+            $table->id('bookingId'); // Khóa chính tự tăng
+            $table->string('address'); // Địa chỉ
+            $table->string('fullName')->nullable(); // Họ tên
+            $table->string('email')->nullable(); // Email
             $table->string('phoneNumber')->nullable(); // Số điện thoại
-            $table->unsignedBigInteger('tourId'); // Sử dụng unsignedBigInteger để khóa ngoại
-            $table->unsignedBigInteger('userId'); // Sử dụng unsignedBigInteger để khóa ngoại
-            $table->foreign('userId')->references('userId')->on('tbl_users'); // Khóa ngoại đến bảng tbl_tours
-            $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade'); // Khóa ngoại đến bảng tbl_tours
-            $table->string('bookingStatus', 10)->default('y');
-            $table->integer('numChildren')->default(0);
-            $table->decimal('totalPrice', 10, 2)->default(0);
-            $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
-            // $table->date('bookingDate')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->date('bookingDate')->nullable();
-            
-            $table->timestamps(); // created_at và updated_at
+
+            $table->unsignedBigInteger('tourId'); // Khóa ngoại tour
+            $table->unsignedBigInteger('userId'); // Khóa ngoại user
+
+            $table->foreign('userId')->references('userId')->on('tbl_users'); // FK đến bảng tbl_users
+            $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade'); // FK đến bảng tbl_tours
+
+            $table->string('bookingStatus', 10)->default('y'); // Trạng thái booking
+            $table->integer('numChildren')->default(0); // Số trẻ em
+            $table->integer('numAdults')->default(0); // Số người lớn
+            $table->decimal('totalPrice', 10, 2)->default(0); // Tổng giá
+
+            $table->date('bookingDate')->nullable(); // Ngày đặt
+            $table->timestamps(); // created_at & updated_at
         });
+
+        // Thêm lại khóa ngoại bookingId vào bảng checkout
         Schema::table('tbl_checkout', function (Blueprint $table) {
             $table->foreign('bookingId')->references('bookingId')->on('tbl_booking')->onDelete('cascade');
         });
-        
     }
 
     /**
@@ -49,6 +57,11 @@ return new class extends Migration
      */
     public function down()
     {
+        // Gỡ quan hệ và xóa bảng booking
+        Schema::table('tbl_checkout', function (Blueprint $table) {
+            $table->dropForeign(['bookingId']);
+        });
+
         Schema::dropIfExists('tbl_booking');
     }
 };
