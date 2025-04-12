@@ -247,8 +247,8 @@
                             @endphp
 
                             @if ($diffInDays < 7 && $startDate> $now)
-                            <button type="button" class="theme-btn style-two w-100 mt-15 mb-5">
-                                    <span data-hover="Đặt ngay">Đã hết thời gian đặt tour</span>
+                                <button type="button" class="theme-btn style-two w-100 mt-15 mb-5">
+                                    <span data-hover="Đã hết thời gian đặt tour">Đã hết thời gian đặt tour</span>
                                     <i class="fal fa-arrow-right"></i>
                                 </button>
                                 @else
