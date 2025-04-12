@@ -75,7 +75,7 @@ class BookingController extends Controller
             $dataCheckout['transactionId'] = $req->transactionIdMomo;
         }
         $checkoutId = $this->checkout->createCheckout($dataCheckout);
-
+        dd("ádfasdfasfas");
         if (empty($bookingId) && !$checkoutId) {
             toastr()->error('Có vấn đề khi đặt tour!');
             return redirect()->back(); // Quay lại trang hiện tại nếu có lỗi
