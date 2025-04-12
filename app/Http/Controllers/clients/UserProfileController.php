@@ -66,7 +66,7 @@ class UserProfileController extends Controller
     public function changeAvatar(Request $req)
     {
         $userId = $this->getUserId();
-
+        dd($req->all());
         $req->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // 5MB
         ]);
