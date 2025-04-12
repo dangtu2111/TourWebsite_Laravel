@@ -25,7 +25,7 @@ class AdminManagementController extends Controller
     }
 
     public function updateAdmin(Request $request)
-    {
+    {   
         $fullName = $request->fullName;
         $password = $request->password;
         $email = $request->email;
@@ -40,12 +40,14 @@ class AdminManagementController extends Controller
         
 
         $dataUpdate = [
-            'fullName' => $fullName,
+            'fullname' => $fullName,
             'password' => $password,
             'email' => $email,
             'address' => $address
         ];
+        
         $update = $this->admin->updateAdmin($dataUpdate);
+        dd( $dataUpdate,$update);
         $newinfo = $this->admin->getAdmin();
         if ($update) {
             return response()->json(
