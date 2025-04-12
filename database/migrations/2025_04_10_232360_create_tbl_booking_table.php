@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         // Hủy liên kết khóa ngoại trước khi xóa bảng
-        Schema::table('tbl_checkout', function (Blueprint $table) {
-            $table->dropForeign(['bookingId']); // Hủy khóa ngoại trước
-        });
+        // Schema::table('tbl_checkout', function (Blueprint $table) {
+        //     $table->dropForeign(['bookingId']); // Hủy khóa ngoại trước
+        // });
 
         // Xóa bảng tbl_booking nếu đã tồn tại
         Schema::dropIfExists('tbl_booking');
