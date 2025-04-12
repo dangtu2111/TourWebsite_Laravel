@@ -16,9 +16,9 @@ class AdminModel extends Model
         return DB::table($this->table)->first();
     }
 
-    public function updateAdmin($data){
+    public function updateAdmin($data,$id){
         return DB::table($this->table)
-        ->where('username', 'admin')
+        ->where('id', $id)
         ->update($data);
     }
 }
