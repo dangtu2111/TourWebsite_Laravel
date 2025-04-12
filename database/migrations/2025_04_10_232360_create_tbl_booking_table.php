@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::table('tbl_checkout', function (Blueprint $table) {
+            $table->dropForeign(['bookingId']);
+        });
         Schema::dropIfExists('tbl_booking');
-
         Schema::create('tbl_booking', function (Blueprint $table) {
             $table->id('bookingId'); // khóa chính tự tăng
             $table->string('address'); // cột password
@@ -34,6 +36,9 @@ return new class extends Migration
             
             $table->timestamps(); // created_at và updated_at
         });
+        Schema::table('tbl_checkout', function (Blueprint $table) {
+            $table->foreign('bookingId')->references('id')->on('tbl_booking');
+        });
         
     }
 
@@ -45,6 +50,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('tbl_booking');
-
     }
 };
