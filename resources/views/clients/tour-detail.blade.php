@@ -245,18 +245,11 @@
                             // Tính toán sự khác biệt giữa ngày bắt đầu và ngày hiện tại
                             $diffInDays = $now->diffInDays($startDate, false); // false để tính sự khác biệt theo chiều ngược lại
                             @endphp
-
-                            @if ($diffInDays < 7 && $startDate> $now)
-                                <button type="button" class="theme-btn style-two w-100 mt-15 mb-5">
+<button type="button" class="theme-btn style-two w-100 mt-15 mb-5">
                                     <span data-hover="Đã hết thời gian đặt tour">Đã hết thời gian đặt tour</span>
                                     <i class="fal fa-arrow-right"></i>
                                 </button>
-                                @else
-                                <button type="submit" class="theme-btn style-two w-100 mt-15 mb-5">
-                                    <span data-hover="Đặt ngay">Đặt ngay</span>
-                                    <i class="fal fa-arrow-right"></i>
-                                </button>
-                                @endif
+                            
 
                                 <div class="text-center">
                                     <a href="{{ route('contact') }}">Bạn cần trợ giúp không?</a>

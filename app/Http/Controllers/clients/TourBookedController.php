@@ -52,7 +52,6 @@ class TourBookedController extends Controller
         $quantityChildren = $req->quantity__children;
         $bookingId = $req->bookingId;
 
-
         $tour = $this->tour->getTourDetail($tourId);
         $currentQuantity = $tour->quantity;
 
@@ -63,6 +62,9 @@ class TourBookedController extends Controller
         $newQuantity = $currentQuantity + $return_quantity;
         $updateQuantity = $this->tour->updateTours($tourId, ['quantity' => $newQuantity]);
 
+        if(!$this->booking->checkTourDate($bookingId)){
+            toastr()->error('Tour sắp bắt đầu bạn không thể hủy ', 'Thông báo');
+        }
         // Hủy booking
         $updateBooking = $this->booking->cancelBooking($bookingId);
 
