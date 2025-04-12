@@ -30,7 +30,7 @@ class Login extends Model
         }
         $id = DB::table($this->table)->insertGetId($data);
         $createdUser = DB::table($this->table)->where('userId', $id)->first();
-        dd($createdUser);
+        
         return $createdUser;
     }
     //Kiểm tra username or email người dùng đã tồn tại hay chưa return true false
