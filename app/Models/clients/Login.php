@@ -19,7 +19,7 @@ class Login extends Model
     }
     public function registerAcountGoogle($data)
     {
-        $existingUser = DB::table($this->table)->where('email', $data['email'])->first();
+        $existingUser = DB::table($this->table)->where('google_id', $data['google_id'])->first();
 
         if ($existingUser) {
             // Cập nhật google_id nếu user đã tồn tại
