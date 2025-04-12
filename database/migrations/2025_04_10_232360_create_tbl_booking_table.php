@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        // Gỡ khóa ngoại trước khi xóa bảng booking (nếu tồn tại)
-        Schema::table('tbl_checkout', function (Blueprint $table) {
-            $table->dropForeign(['bookingId']);
-        });
+        // // Gỡ khóa ngoại trước khi xóa bảng booking (nếu tồn tại)
+        // Schema::table('tbl_checkout', function (Blueprint $table) {
+        //     $table->dropForeign(['bookingId']);
+        // });
 
         // Xóa bảng tbl_booking nếu đã tồn tại
         Schema::dropIfExists('tbl_booking');
