@@ -92,7 +92,6 @@ class UserProfileController extends Controller
         $avatar->move(public_path('admin/assets/images/user-profile'), $filename);
         $update = $this->user->updateUser($userId, ['avatar' => $filename]);
         $req->session()->put('avatar', $filename);
-        dd($filename);
         if (!$update) {
             return response()->json(['error' => true, 'message' => 'Có vấn đề khi cập nhật ảnh!']);
         }
