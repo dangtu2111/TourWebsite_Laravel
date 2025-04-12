@@ -56,7 +56,7 @@
                             <h5>Liên hệ</h5>
                         </div>
                         <ul class="list-style-one">
-                            <li><i class="fal fa-map-marked-alt"></i> 470 Tran Dai Nghia, Ngu Hanh Son, Da Nang</li>
+                            <li><i class="fal fa-map-marked-alt"></i> 144/16 Au Co ,Tan Binh ,HCM</li>
                             <li><i class="fal fa-envelope"></i> <a
                                     href="mailto:minhdien.dev@gmail.com">anhtuhanam1@gmail.com</a></li>
                             <li><i class="fal fa-phone-volume"></i> <a href="callto:+88012334588">+880 (123)
