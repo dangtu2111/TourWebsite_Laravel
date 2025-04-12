@@ -93,7 +93,7 @@ class BookingController extends Controller
 
         /******************************* */
 
-        // toastr()->success('Đặt tour thành công!');
+        toastr()->success('Đặt tour thành công!');
         return redirect()->route('tour-booked', [
             'bookingId' => $bookingId,
             'checkoutId' => $checkoutId,

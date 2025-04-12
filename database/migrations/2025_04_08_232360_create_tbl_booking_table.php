@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('userId'); // Sử dụng unsignedBigInteger để khóa ngoại
             $table->foreign('userId')->references('userId')->on('tbl_users'); // Khóa ngoại đến bảng tbl_tours
             $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade'); // Khóa ngoại đến bảng tbl_tours
-            $table->string('bookingStatus', 10)->default('f');
+            $table->string('bookingStatus', 10)->default('y');
             $table->integer('numChildren')->default(0);
             $table->decimal('totalPrice', 10, 2)->default(0);
             $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
