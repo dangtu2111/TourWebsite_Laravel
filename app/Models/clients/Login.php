@@ -28,7 +28,7 @@ class Login extends Model
                 ->update(['google_id' => $data['google_id']]);
             return DB::table($this->table)->where('email', $data['email'])->first();
         }
-        dd($data);
+       
         return DB::table($this->table)->insert($data);
     }
     //Kiểm tra username or email người dùng đã tồn tại hay chưa return true false
