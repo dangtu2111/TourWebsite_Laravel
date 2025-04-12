@@ -66,7 +66,6 @@ return new class extends Migration
             $table->timestamps(); // created_at và updated_at
         });
        
-        // Tạo bảng tbl_booking
         Schema::create('tbl_booking', function (Blueprint $table) {
             $table->id('bookingId'); // khóa chính tự tăng
             $table->string('address'); // cột password
@@ -77,12 +76,13 @@ return new class extends Migration
             $table->unsignedBigInteger('userId'); // Sử dụng unsignedBigInteger để khóa ngoại
             $table->foreign('userId')->references('userId')->on('tbl_users'); // Khóa ngoại đến bảng tbl_tours
             $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade'); // Khóa ngoại đến bảng tbl_tours
-            $table->enum('bookingStatus', ['y', 'f', 'c','b'])->default('f');
+            $table->string('bookingStatus', 10)->default('y');
             $table->integer('numChildren')->default(0);
             $table->decimal('totalPrice', 10, 2)->default(0);
             $table->integer('numAdults')->default(0); // Thêm cột 'bookingStatus'
             // $table->date('bookingDate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->date('bookingDate')->nullable();
+            
             $table->timestamps(); // created_at và updated_at
         });
 
@@ -102,6 +102,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2); // Số tiền thanh toán
             $table->string('paymentMethod'); // Phương thức thanh toán
             $table->string('paymentStatus')->default('pending'); // Trạng thái thanh toán
+            $table->dateTime('paymentDate')->nullable();
             $table->timestamps();
 
             // Định nghĩa khóa ngoại

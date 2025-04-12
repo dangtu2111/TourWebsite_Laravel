@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('tbl_booking');
+
         Schema::create('tbl_booking', function (Blueprint $table) {
             $table->id('bookingId'); // khóa chính tự tăng
             $table->string('address'); // cột password
@@ -32,18 +34,7 @@ return new class extends Migration
             
             $table->timestamps(); // created_at và updated_at
         });
-        Schema::create('tbl_checkout', function (Blueprint $table) {
-            $table->id('checkoutId'); // Khóa chính tự tăng
-            $table->unsignedBigInteger('bookingId'); // Khóa ngoại tới bảng tbl_booking
-            $table->decimal('amount', 10, 2); // Số tiền thanh toán
-            $table->string('paymentMethod'); // Phương thức thanh toán
-            $table->string('paymentStatus')->default('pending'); // Trạng thái thanh toán
-            $table->dateTime('paymentDate')->nullable();
-            $table->timestamps();
-
-            // Định nghĩa khóa ngoại
-            $table->foreign('bookingId')->references('bookingId')->on('tbl_booking')->onDelete('cascade');
-        });
+        
     }
 
     /**
@@ -54,7 +45,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('tbl_booking');
-        Schema::dropIfExists('tbl_checkout');
 
     }
 };
