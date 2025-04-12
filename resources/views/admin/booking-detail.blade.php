@@ -37,7 +37,7 @@
                                                         alt=""
                                                         style="margin-right: 10px">{{ $invoice_booking->title }}
                                                     <small class="pull-right">Ngày:
-                                                    {{ date('d-m-Y', strtotime($invoice_booking->created_at)) }}</small>
+                                                        {{ date('d-m-Y', strtotime($invoice_booking->bookingDate)) }}</small>
                                                 </h3>
                                             </div>
                                             <!-- /.col -->

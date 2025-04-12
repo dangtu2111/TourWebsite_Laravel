@@ -57,7 +57,8 @@ class BookingController extends Controller
             'numAdults' => $numAdults,
             'numChildren' => $numChildren,
             'phoneNumber' => $tel,
-            'totalPrice' => $totalPrice
+            'totalPrice' => $totalPrice,
+            'bookingDate'=>now()
         ];
         
         $bookingId = $this->booking->createBooking($dataBooking);
