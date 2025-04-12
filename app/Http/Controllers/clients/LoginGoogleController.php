@@ -29,7 +29,7 @@ class LoginGoogleController extends Controller
             // dd($finduser);
             if ($finduser) {
                 if($finduser->status=='b'){
-                    redirect()->route('login')->with('error', 'Bạn đã bị chặn');
+                    return redirect()->route('login')->with('error', 'Bạn đã bị chặn');
                 }
                 session()->put('username', $finduser->username);
                 return redirect()->intended('/');
