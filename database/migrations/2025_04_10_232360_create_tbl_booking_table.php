@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tbl_checkout', function (Blueprint $table) {
-            $table->dropForeign(['bookingId']);
+            $table->dropIndex('tbl_checkout_bookingid_foreign');
         });
 
         // Xóa bảng tbl_booking nếu đã tồn tại
