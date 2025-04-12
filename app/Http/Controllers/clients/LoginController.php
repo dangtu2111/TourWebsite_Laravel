@@ -97,6 +97,12 @@ class LoginController extends Controller
         $user_login = $this->login->login($data_login);
         $userId = $this->user->getUserId($username);
         $user = $this->user->getUser($userId);
+        if($user->status=='b'){
+            return response()->json([
+                'success' => false,
+                'message' => 'Bạn đã bị chặn',
+            ]);
+        }
 
         if ($user_login != null) {
             $request->session()->put('username', $username);
