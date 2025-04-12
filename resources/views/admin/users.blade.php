@@ -68,12 +68,12 @@
                                                 <i class="fa fa-ban"> </i> Bỏ chặn
                                             </button>
 
-                                            <button type="button" class="btn btn-primary btn-danger"
+                                            <!-- <button type="button" class="btn btn-primary btn-danger"
                                                 data-attr='{"userId": "{{ $user->userId }}", "action": "{{ route('admin.status-user') }}", "status": "d"}'
                                                 id="btn-delete"
                                                 style="{{ $user->status === 'd' ? 'display: none;' : '' }}">
                                                 <i class="fa fa-close"> </i> Xóa
-                                            </button>
+                                            </button> -->
                                             <button type="button" class="btn btn-primary btn-danger"
                                                 data-attr='{"userId": "{{ $user->userId }}", "action": "{{ route('admin.status-user') }}", "status": ""}'
                                                 id="btn-restore"
