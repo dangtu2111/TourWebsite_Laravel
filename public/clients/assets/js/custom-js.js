@@ -481,6 +481,9 @@ $(document).ready(function () {
         $(".summary-item:nth-child(2) .total-price").text(
             childPrice.toLocaleString() + " VNĐ"
         );
+        let priceText = $(".summary-item:nth-child(3) .total-price").text();
+        let rawNumber = priceText.replace(/[^\d]/g, ''); // Loại bỏ mọi ký tự không phải số
+        let discount = parseInt(rawNumber);
         // Tính tổng giá trị
         totalPrice = adultsTotal + childrenTotal - discount;
         $(".summary-item.total-price span:last").text(
