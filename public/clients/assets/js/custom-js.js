@@ -488,7 +488,7 @@ $(document).ready(function () {
         );
 
         $(".totalPrice").val(totalPrice);
-        $(".btn-coupon").trigger("click");
+        
 
 
     }
@@ -539,6 +539,7 @@ $(document).ready(function () {
 
         // Cập nhật lại tổng giá
         updateSummary();
+        $(".btn-coupon").trigger("click");
     });
 
     // Áp dụng mã giảm giá
