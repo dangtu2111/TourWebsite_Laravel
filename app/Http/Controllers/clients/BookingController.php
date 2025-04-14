@@ -8,7 +8,7 @@ use App\Models\clients\Checkout;
 use App\Models\clients\Tours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use App\Models\Voucher;
 class BookingController extends Controller
 {
     private $tour;
@@ -45,6 +45,8 @@ class BookingController extends Controller
         $totalPrice = $req->input('totalPrice');
         $tourId = $req->input('tourId');
         $userId = $this->getUserId();
+        dd($req->all());
+        $voucherCode=$req->input('code');
         /**
          * Xử lý booking và checkout
          */
