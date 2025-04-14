@@ -9,6 +9,7 @@ use App\Models\clients\Tours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Voucher;
+use Carbon\Carbon;
 class BookingController extends Controller
 {
     private $tour;
@@ -45,8 +46,18 @@ class BookingController extends Controller
         $totalPrice = $req->input('totalPrice');
         $tourId = $req->input('tourId');
         $userId = $this->getUserId();
-        dd($req->all());
+
         $voucherCode=$req->input('code');
+        if($voucherCode){
+            $voucher = Voucher::where('code', $voucherCode)
+            ->where('is_active', true)
+            ->where('start_date', '<=', Carbon::now())
+            ->where('end_date', '>=', Carbon::now())
+            ->whereColumn('used_count', '<', 'max_usage')
+            ->first();
+        }
+        
+
         /**
          * Xử lý booking và checkout
          */
@@ -60,7 +71,7 @@ class BookingController extends Controller
             'numChildren' => $numChildren,
             'phoneNumber' => $tel,
             'totalPrice' => $totalPrice,
-            
+            'voucher_id' =>$voucher->id??null,
             'bookingDate'=>now()
         ];
         
