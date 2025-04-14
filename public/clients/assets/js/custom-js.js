@@ -458,7 +458,7 @@ $(document).ready(function () {
     let discount = 0; // Giảm giá, có thể cập nhật khi áp dụng mã giảm giá
     let totalPrice = 0; // Khai báo biến totalPrice để lưu tổng giá trị
 
-    function updateSummary() {
+    function updateSummary(discount=0) {
         // Lấy số lượng người lớn và trẻ em
         const numAdults = parseInt($("#numAdults").val());
         const numChildren = parseInt($("#numChildren").val());
@@ -580,7 +580,7 @@ $(document).ready(function () {
                     $(".summary-item:nth-child(3) .total-price").text(
                         discount.toLocaleString() + " VNĐ"
                     );
-                    updateSummary(); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
+                    updateSummary(discount); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
                 } else {
                     toastr.error(response.message || "Mã giảm giá không hợp lệ!");
                     resetDiscountUI();
