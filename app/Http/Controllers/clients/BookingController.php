@@ -58,6 +58,7 @@ class BookingController extends Controller
             'numChildren' => $numChildren,
             'phoneNumber' => $tel,
             'totalPrice' => $totalPrice,
+            
             'bookingDate'=>now()
         ];
         

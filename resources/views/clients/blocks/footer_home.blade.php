@@ -14,7 +14,7 @@
                             chuyến đi đều
                             liền mạch và làm phong phú thêm những viên ngọc ẩn giấu</p>
                         <div class="social-style-one mt-15">
-                            <a href="https://www.facebook.com/dienne.dev"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/nong.than.944"><i class="fab fa-facebook-f"></i></a>
                             <a href="contact.html"><i class="fab fa-youtube"></i></a>
                             <a href="contact.html"><i class="fab fa-pinterest"></i></a>
                             <a href="contact.html"><i class="fab fa-twitter"></i></a>
