@@ -41,6 +41,7 @@ class Booking extends Model
 
         // Lấy thông tin startDate từ tour liên quan tới booking
         $tourId = $getBookingDetail->tourId;
+       
         $getTourDetail = DB::table('tbl_tours')
             ->where('tourId', $tourId)
             ->first();

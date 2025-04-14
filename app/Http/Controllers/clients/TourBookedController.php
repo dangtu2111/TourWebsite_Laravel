@@ -62,7 +62,7 @@ class TourBookedController extends Controller
         $newQuantity = $currentQuantity + $return_quantity;
         $updateQuantity = $this->tour->updateTours($tourId, ['quantity' => $newQuantity]);
 
-        if(!$this->booking->checkTourDate($bookingId)){
+        if($this->booking->checkTourDate($bookingId)){
             toastr()->error('Tour sắp bắt đầu bạn không thể hủy ', 'Thông báo');
             return redirect()->back();
         }
