@@ -10,17 +10,24 @@ class VoucherController extends Controller
 {
     public function index()
     {
-        $vouchers = Voucher::all();
-        return view('admin.vouchers.index', compact('vouchers'));
+        $list_voucher = Voucher::all();
+        $title = "Quản lí voucher";
+        return view('admin.vouchers.index', compact('list_voucher', 'title'));
     }
 
     public function create()
     {
-        return view('vouchers.create');
+        $title = "Quản lí voucher";
+        return view('admin.vouchers.create', compact('title'));
     }
 
     public function store(Request $request)
     {
+        $request->merge([
+            'start_date' => Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d'),
+            'is_active' => $request->has('is_active') ? true : false,
+        ]);
         $validated = $request->validate([
             'code' => 'required|unique:vouchers|min:3|max:20',
             'discount' => 'required|numeric|min:0',
@@ -37,16 +44,25 @@ class VoucherController extends Controller
 
     public function show(Voucher $voucher)
     {
-        return view('vouchers.show', compact('voucher'));
+        $list_voucher = Voucher::all();
+        $title = "Quản lí voucher";
+        return view('admin.vouchers.index', compact('list_voucher', 'title'));
     }
 
     public function edit(Voucher $voucher)
     {
-        return view('vouchers.edit', compact('voucher'));
+        $title = "Sửa voucher";
+        return view('admin.vouchers.edit', compact('voucher', 'title'));
     }
 
     public function update(Request $request, Voucher $voucher)
     {
+        $request->merge([
+            'start_date' => Carbon::createFromFormat('d/m/Y', $request->start_date)->format('Y-m-d'),
+            'end_date' => Carbon::createFromFormat('d/m/Y', $request->end_date)->format('Y-m-d'),
+            'is_active' => $request->has('is_active') ? true : false,
+        ]);
+
         $validated = $request->validate([
             'code' => 'required|min:3|max:20|unique:vouchers,code,' . $voucher->id,
             'discount' => 'required|numeric|min:0',
@@ -57,8 +73,8 @@ class VoucherController extends Controller
             'end_date' => 'required|date|after:start_date',
             'is_active' => 'boolean',
         ]);
-
         $voucher->update($validated);
+
         return redirect()->route('vouchers.index')->with('success', 'Voucher updated successfully');
     }
 
@@ -82,11 +98,26 @@ class VoucherController extends Controller
             ->first();
 
         if (!$voucher) {
-            return back()->withErrors(['code' => 'Invalid or expired voucher code']);
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid or expired voucher code'
+            ], 404);
         }
 
-        // Logic áp dụng voucher vào giỏ hàng
-        // Đây là nơi bạn sẽ tính toán giá trị giảm giá dựa trên discount_type và discount
-        return redirect()->back()->with('success', 'Voucher applied successfully');
+        // Logic áp dụng voucher (ví dụ: tính giảm giá)
+        // Tùy vào cấu trúc bảng `vouchers`, bạn có thể trả các thông tin như sau:
+        return response()->json([
+            'success' => true,
+            'message' => 'Voucher applied successfully',
+            'data' => [
+                'code' => $voucher->code,
+                'discount_type' => $voucher->discount_type,
+                'discount' => $voucher->discount,
+                'max_usage' => $voucher->max_usage,
+                'used_count' => $voucher->used_count,
+                'start_date' => $voucher->start_date,
+                'end_date' => $voucher->end_date,
+            ]
+        ]);
     }
 }

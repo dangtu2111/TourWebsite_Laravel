@@ -100,14 +100,7 @@ Route::post('/create-contact', [ContactController::class, 'createContact'])->nam
 Route::get('/search', [SearchController::class, 'index'])->name(name: 'search');
 Route::get('/search-voice-text', [SearchController::class, 'searchTours'])->name('search-voice-text');
 
-// Routes cho web
-Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
-Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
-Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
-Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
-Route::get('/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
-Route::put('/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
-Route::delete('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
+
 
 // Route kiểm tra và áp dụng voucher
 Route::post('/vouchers/apply', [VoucherController::class, 'apply'])->name('vouchers.apply');
@@ -160,5 +153,14 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     //Contact management
     Route::get('/contact', [ContactManagementController::class, 'index'])->name('admin.contact');
     Route::post('/reply-contact', [ContactManagementController::class, 'replyContact'])->name('admin.reply-contact');
+
+    // Routes cho web
+    Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
+    Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
+    Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+    Route::get('/vouchers/{voucher}', [VoucherController::class, 'show'])->name('vouchers.show');
+    Route::get('/vouchers/edit/{voucher}', [VoucherController::class, 'edit'])->name('vouchers.edit');
+    Route::put('/vouchers/update/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
+    Route::delete('/vouchers/destroy/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
 
 });

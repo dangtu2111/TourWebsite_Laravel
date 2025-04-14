@@ -548,56 +548,62 @@ $(document).ready(function () {
             url: "http://tuduxuan.luontuoivui.xyz/vouchers/apply", // Đường dẫn đến API kiểm tra mã giảm giá
             method: "POST",
             data: {
-                code: couponCode, // Sử dụng couponCode thay vì discountCode
-                _token: $('meta[name="csrf-token"]').attr('content') // Lấy token từ meta tag
+                code: couponCode,
+                _token: $('meta[name="csrf-token"]').attr('content')
             },
-            beforeSend: function() {
-                $(".btn-spinner").show(); // Hiển thị icon loading
+            beforeSend: function () {
+                $(".btn-spinner").show();
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     toastr.success(response.message || "Áp dụng mã giảm giá thành công!");
-                    // Tính toán discount dựa trên dữ liệu từ server
+    
+                    const data = response.data;
                     let discount = 0;
-                    if (response.discount_type === 'percent') {
-                        discount = response.discount / 100 * (
-                            parseInt($("#numAdults").val()) * $("#numAdults").data("price-adults") +
-                            parseInt($("#numChildren").val()) * $("#numChildren").data("price-children")
-                        );
-                    } else if (response.discount_type === 'fixed') {
-                        discount = response.discount;
+    
+                    // Tính toán discount
+                    const adultCount = parseInt($("#numAdults").val()) || 0;
+                    const childCount = parseInt($("#numChildren").val()) || 0;
+                    const adultPrice = $("#numAdults").data("price-adults") || 0;
+                    const childPrice = $("#numChildren").data("price-children") || 0;
+    
+                    const total = (adultCount * adultPrice) + (childCount * childPrice);
+    
+                    if (data.discount_type === 'percent') {
+                        discount = (data.discount / 100) * total;
+                    } else if (data.discount_type === 'fixed') {
+                        discount = data.discount;
                     }
     
                     // Cập nhật UI
                     $(".summary-item:nth-child(3) .total-price").text(
                         discount.toLocaleString() + " VNĐ"
                     );
-                    updateSummary();
+                    updateSummary(discount); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
                 } else {
                     toastr.error(response.message || "Mã giảm giá không hợp lệ!");
-                    // Reset discount về 0 nếu mã không hợp lệ
-                    discount = 0;
-                    $(".summary-item:nth-child(3) .total-price").text(
-                        discount.toLocaleString() + " VNĐ"
-                    );
-                    updateSummary();
+                    resetDiscountUI();
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 let errorMsg = xhr.responseJSON?.message || "Đã có lỗi xảy ra!";
                 toastr.error(errorMsg);
-                // Reset discount về 0 khi có lỗi
-                discount = 0;
-                $(".summary-item:nth-child(3) .total-price").text(
-                    discount.toLocaleString() + " VNĐ"
-                );
-                updateSummary();
+                resetDiscountUI();
             },
-            complete: function() {
-                $(".btn-spinner").hide(); // Ẩn icon loading sau khi hoàn tất
+            complete: function () {
+                $(".btn-spinner").hide();
             }
         });
     });
+    
+    // Hàm helper reset UI khi lỗi
+    function resetDiscountUI() {
+        const discount = 0;
+        $(".summary-item:nth-child(3) .total-price").text(
+            discount.toLocaleString() + " VNĐ"
+        );
+        updateSummary(discount);
+    }
 
     // Sự kiện khi thay đổi trạng thái checkbox
     $("#agree").on("change", function () {
