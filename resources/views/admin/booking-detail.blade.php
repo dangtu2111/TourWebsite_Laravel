@@ -109,7 +109,6 @@
                                                             <td>{{ number_format($invoice_booking->priceChild, 0, ',', '.') }}
                                                                 vnđ</td>
                                                             <td>{{ $invoice_booking->destination }}</td>
-                                                            <td>{{ $invoice_booking->voucher_id }}</td>
                                                             <td>{{ number_format($invoice_booking->priceChild * $invoice_booking->numChildren, 0, ',', '.') }}
                                                                 vnđ</td>
                                                         </tr>
@@ -125,15 +124,15 @@
                                             <div class="col-md-6">
                                                 <p class="lead">Phương thức thanh toán:</p>
                                                 @if ($invoice_booking->paymentMethod == 'momo-payment')
-                                                    <img src="{{ asset('admin/assets/images/icon/icon_momo.png') }}"
-                                                        class="invoice_payment-method" alt="">
+                                                <img src="{{ asset('admin/assets/images/icon/icon_momo.png') }}"
+                                                    class="invoice_payment-method" alt="">
                                                 @elseif ($invoice_booking->paymentMethod == 'paypal-payment')
-                                                    <img src="{{ asset('admin/assets/images/icon/icon_paypal.png') }}"
-                                                        class="invoice_payment-method" alt="">
+                                                <img src="{{ asset('admin/assets/images/icon/icon_paypal.png') }}"
+                                                    class="invoice_payment-method" alt="">
                                                 @else
-                                                    <img src="{{ asset('admin/assets/images/icon/icon_office.png') }}"
-                                                        alt="">
-                                                    <span class="badge badge-info">Thanh toán tại văn phòng</span>
+                                                <img src="{{ asset('admin/assets/images/icon/icon_office.png') }}"
+                                                    alt="">
+                                                <span class="badge badge-info">Thanh toán tại văn phòng</span>
                                                 @endif
                                                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                                                     Vui lòng hoàn tất thanh toán theo hướng dẫn hoặc liên hệ với chúng
@@ -143,10 +142,15 @@
                                             <!-- /.col -->
                                             <div class="col-md-6">
                                                 <p class="lead">Số tiền phải trả trước
-                                                    {{ date('d-m-Y', strtotime($invoice_booking->startDate)) }}</p>
+                                                    {{ date('d-m-Y', strtotime($invoice_booking->startDate)) }}
+                                                </p>
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>
+                                                            <tr>
+                                                                <th style="width:50%">Voucher ID:</th>
+                                                                <td>{{ $invoice_booking->voucher_id }}</td>
+                                                            </tr>
                                                             <tr>
                                                                 <th style="width:50%">Tổng tiền:</th>
                                                                 <td>{{ number_format($invoice_booking->priceAdult * $invoice_booking->numAdults+$invoice_booking->priceChild * $invoice_booking->numChildren, 0, ',', '.') }}
@@ -182,19 +186,19 @@
                                 <div class=" ">
                                     <button class="btn btn-default" onclick="window.print();"><i
                                             class="fa fa-print"></i> Print</button>
-                                    <button id="send-pdf-btn" data-bookingid= "{{ $invoice_booking->bookingId }}"
+                                    <button id="send-pdf-btn" data-bookingid="{{ $invoice_booking->bookingId }}"
                                         data-email={{ $invoice_booking->email }}
                                         data-urlSendMail={{ route('admin.send.pdf') }}
                                         class="btn btn-primary pull-right" style="margin-right: 5px;"><i
                                             class="fa fa-send"></i> Gửi hóa đơn cho khách hàng</button>
                                     @if ($invoice_booking->bookingStatus == 'b')
-                                        <button class="btn btn-success pull-right confirm-booking"
-                                            data-bookingId="{{ $invoice_booking->bookingId }}"
-                                            data-urlConfirm="{{ route('admin.confirm-booking') }}"><i
-                                                class="fa fa-credit-card"></i> Xác nhận</button>
+                                    <button class="btn btn-success pull-right confirm-booking"
+                                        data-bookingId="{{ $invoice_booking->bookingId }}"
+                                        data-urlConfirm="{{ route('admin.confirm-booking') }}"><i
+                                            class="fa fa-credit-card"></i> Xác nhận</button>
                                     @endif
-                                    <button id="received-money" data-bookingid= "{{ $invoice_booking->bookingId }}"
-                                         data-urlPaid="{{ route('admin.received') }}"
+                                    <button id="received-money" data-bookingid="{{ $invoice_booking->bookingId }}"
+                                        data-urlPaid="{{ route('admin.received') }}"
                                         class="btn btn-info pull-right {{ $hide }}" style="margin-right: 5px;"><i
                                             class="glyphicon glyphicon-usd"></i> Đã thanh toán</button>
                                 </div>
