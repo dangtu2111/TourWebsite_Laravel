@@ -89,6 +89,7 @@
                                                             <th>Số lượng</th>
                                                             <th>Đơn giá</th>
                                                             <th>Điểm đến</th>
+                                                            <th>Voucher ID</th>
                                                             <th>Tổng tiền</th>
                                                         </tr>
                                                     </thead>
@@ -108,6 +109,7 @@
                                                             <td>{{ number_format($invoice_booking->priceChild, 0, ',', '.') }}
                                                                 vnđ</td>
                                                             <td>{{ $invoice_booking->destination }}</td>
+                                                            <td>{{ $invoice_booking->voucher_id }}</td>
                                                             <td>{{ number_format($invoice_booking->priceChild * $invoice_booking->numChildren, 0, ',', '.') }}
                                                                 vnđ</td>
                                                         </tr>
