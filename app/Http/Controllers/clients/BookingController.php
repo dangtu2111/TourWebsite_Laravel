@@ -55,6 +55,13 @@ class BookingController extends Controller
             ->where('end_date', '>=', Carbon::now())
             ->whereColumn('used_count', '<', 'max_usage')
             ->first();
+            
+            if(!$voucher){
+                toastr()->error('Mã voucher không hợp lệ!');
+                return redirect()->back();
+            }else{
+                $voucher->increment('used_count');
+            }
         }
         
 
