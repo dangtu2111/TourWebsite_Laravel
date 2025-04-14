@@ -99,7 +99,7 @@
                                                             <td>{{ number_format($invoice_booking->priceAdult, 0, ',', '.') }}
                                                                 vnđ</td>
                                                             <td>{{ $invoice_booking->destination }}</td>
-                                                            <td>{{ number_format($invoice_booking->priceAdult * $invoice_booking->numAdults, 0, ',', '.') }}
+                                                            <td>{{ number_format( $invoice_booking->priceAdult * $invoice_booking->numAdults, 0, ',', '.') }}
                                                                 vnđ</td>
                                                         </tr>
                                                         <tr>
@@ -147,7 +147,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th style="width:50%">Tổng tiền:</th>
-                                                                <td>{{ number_format($invoice_booking->totalPrice, 0, ',', '.') }}
+                                                                <td>{{ number_format($invoice_booking->priceAdult * $invoice_booking->numAdults+$invoice_booking->priceChild * $invoice_booking->numChildren, 0, ',', '.') }}
                                                                     vnđ</td>
                                                             </tr>
                                                             <tr>
@@ -156,7 +156,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <th>Giảm giá</th>
-                                                                <td>0 vnđ</td>
+                                                                <td>{{ number_format(($invoice_booking->priceAdult * $invoice_booking->numAdults+$invoice_booking->priceChild * $invoice_booking->numChildren)-$invoice_booking->totalPrice, 0, ',', '.') }} vnđ</td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Tổng tiền:</th>
