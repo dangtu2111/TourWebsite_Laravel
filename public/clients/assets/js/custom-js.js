@@ -579,7 +579,7 @@ $(document).ready(function () {
                     $(".summary-item:nth-child(3) .total-price").text(
                         discount.toLocaleString() + " VNĐ"
                     );
-                    updateSummary(discount); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
+                    updateSummary(); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
                 } else {
                     toastr.error(response.message || "Mã giảm giá không hợp lệ!");
                     resetDiscountUI();
