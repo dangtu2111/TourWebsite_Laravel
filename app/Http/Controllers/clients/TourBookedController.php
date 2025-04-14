@@ -64,6 +64,7 @@ class TourBookedController extends Controller
 
         if(!$this->booking->checkTourDate($bookingId)){
             toastr()->error('Tour sắp bắt đầu bạn không thể hủy ', 'Thông báo');
+            return redirect()->back();
         }
         // Hủy booking
         $updateBooking = $this->booking->cancelBooking($bookingId);
