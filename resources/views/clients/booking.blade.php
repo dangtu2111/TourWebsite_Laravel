@@ -1,6 +1,11 @@
 @include('clients.blocks.header')
 @include('clients.blocks.banner')
-<sytle></sytle>
+<style>
+.xdsoft_datetimepicker,
+.xdsoft_noselect {
+    display: none !important;
+}
+</style>
 <section class="container" style="margin-top:50px; margin-bottom: 100px">
     {{-- <h1 class="text-center booking-header">Tổng Quan Về Chuyến Đi</h1> --}}
 
@@ -152,7 +157,6 @@
 <!-- 
                 <button id="btn-momo-payment" class="booking-btn" style="display: none;"
                     data-urlmomo = "{{ route('createMomoPayment') }}">Thanh toán với Momo <img src="{{ asset('clients/assets/images/booking/icon-thanh-toan-momo.png') }}" alt="" style="width: 10%"></button> -->
-                    <input type="text"   class="form-control datetimepicker"  style="display:none">
 
             </div>
         </div>
