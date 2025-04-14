@@ -66,11 +66,11 @@
                 Thanh toán bằng PayPal
             </label>
 
-            <label class="payment-option">
+            <!-- <label class="payment-option">
                 <input type="radio" value="momo-payment" @if ($tour_booked->paymentMethod == 'momo-payment') checked @endif disabled>
                 <img src="{{ asset('clients/assets/images/booking/thanh-toan-momo.jpg') }}" alt="MoMo">
                 Thanh toán bằng Momo
-            </label>
+            </label> -->
 
         </div>
 
