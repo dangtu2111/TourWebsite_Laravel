@@ -481,7 +481,7 @@ $(document).ready(function () {
         $(".summary-item:nth-child(2) .total-price").text(
             childPrice.toLocaleString() + " VNĐ"
         );
-
+        console.log(discount);
         // Tính tổng giá trị
         totalPrice = adultsTotal + childrenTotal - discount;
         $(".summary-item.total-price span:last").text(
@@ -574,6 +574,7 @@ $(document).ready(function () {
                     } else if (data.discount_type === 'fixed') {
                         discount = data.discount;
                     }
+                    
     
                     // Cập nhật UI
                     $(".summary-item:nth-child(3) .total-price").text(
