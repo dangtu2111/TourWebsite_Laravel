@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="order-coupon">
-                    <input type="text" placeholder="Mã giảm giá" style="width: 65%;">
+                    <input type="text" placeholder="Mã giảm giá" name="code" style="width: 65%;">
                     <button style="width: 30%" class="booking-btn btn-coupon">Áp dụng</button>
                 </div>
 
