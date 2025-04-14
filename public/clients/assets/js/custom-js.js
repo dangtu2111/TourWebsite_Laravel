@@ -481,10 +481,6 @@ $(document).ready(function () {
         $(".summary-item:nth-child(2) .total-price").text(
             childPrice.toLocaleString() + " VNĐ"
         );
-        let priceText = $(".summary-item:nth-child(3) .total-price").text();
-        let rawNumber = priceText.replace(/[^\d]/g, ''); // Loại bỏ mọi ký tự không phải số
-        let discount = parseInt(rawNumber);
-        console.log(discount);
         // Tính tổng giá trị
         totalPrice = adultsTotal + childrenTotal - discount;
         $(".summary-item.total-price span:last").text(
@@ -492,6 +488,9 @@ $(document).ready(function () {
         );
 
         $(".totalPrice").val(totalPrice);
+        $(".btn-coupon").trigger("click");
+
+
     }
 
     // Sự kiện tăng/giảm số lượng người lớn và trẻ em
