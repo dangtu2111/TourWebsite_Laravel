@@ -545,58 +545,60 @@ $(document).ready(function () {
     $(".btn-coupon").on("click", function (e) {
         e.preventDefault();
         const couponCode = $(".order-coupon input").val();
-    
-        $.ajax({
-            url: "http://tuduxuan.luontuoivui.xyz/vouchers/apply", // Đường dẫn đến API kiểm tra mã giảm giá
-            method: "POST",
-            data: {
-                code: couponCode,
-                _token: $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
-                $(".btn-spinner").show();
-            },
-            success: function (response) {
-                if (response.success) {
-                    toastr.success(response.message || "Áp dụng mã giảm giá thành công!");
-    
-                    const data = response.data;
-                    let discount = 0;
-    
-                    // Tính toán discount
-                    const adultCount = parseInt($("#numAdults").val()) || 0;
-                    const childCount = parseInt($("#numChildren").val()) || 0;
-                    const adultPrice = $("#numAdults").data("price-adults") || 0;
-                    const childPrice = $("#numChildren").data("price-children") || 0;
-    
-                    const total = (adultCount * adultPrice) + (childCount * childPrice);
-    
-                    if (data.discount_type === 'percent') {
-                        discount = (data.discount / 100) * total;
-                    } else if (data.discount_type === 'fixed') {
-                        discount = data.discount;
+        if(couponCode){
+            $.ajax({
+                url: "http://tuduxuan.luontuoivui.xyz/vouchers/apply", // Đường dẫn đến API kiểm tra mã giảm giá
+                method: "POST",
+                data: {
+                    code: couponCode,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    $(".btn-spinner").show();
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message || "Áp dụng mã giảm giá thành công!");
+        
+                        const data = response.data;
+                        let discount = 0;
+        
+                        // Tính toán discount
+                        const adultCount = parseInt($("#numAdults").val()) || 0;
+                        const childCount = parseInt($("#numChildren").val()) || 0;
+                        const adultPrice = $("#numAdults").data("price-adults") || 0;
+                        const childPrice = $("#numChildren").data("price-children") || 0;
+        
+                        const total = (adultCount * adultPrice) + (childCount * childPrice);
+        
+                        if (data.discount_type === 'percent') {
+                            discount = (data.discount / 100) * total;
+                        } else if (data.discount_type === 'fixed') {
+                            discount = data.discount;
+                        }
+                        
+        
+                        // Cập nhật UI
+                        $(".summary-item:nth-child(3) .total-price").text(
+                            discount.toLocaleString() + " VNĐ"
+                        );
+                        updateSummary(); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
+                    } else {
+                        toastr.error(response.message || "Mã giảm giá không hợp lệ!");
+                        resetDiscountUI();
                     }
-                    
-    
-                    // Cập nhật UI
-                    $(".summary-item:nth-child(3) .total-price").text(
-                        discount.toLocaleString() + " VNĐ"
-                    );
-                    updateSummary(); // Gọi hàm cập nhật tổng (truyền discount nếu cần)
-                } else {
-                    toastr.error(response.message || "Mã giảm giá không hợp lệ!");
+                },
+                error: function (xhr) {
+                    let errorMsg = xhr.responseJSON?.message || "Đã có lỗi xảy ra!";
+                    toastr.error(errorMsg);
                     resetDiscountUI();
+                },
+                complete: function () {
+                    $(".btn-spinner").hide();
                 }
-            },
-            error: function (xhr) {
-                let errorMsg = xhr.responseJSON?.message || "Đã có lỗi xảy ra!";
-                toastr.error(errorMsg);
-                resetDiscountUI();
-            },
-            complete: function () {
-                $(".btn-spinner").hide();
-            }
-        });
+            });
+        }
+        
     });
     
     // Hàm helper reset UI khi lỗi
