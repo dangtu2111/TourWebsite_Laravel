@@ -2861,24 +2861,25 @@ function init_charts() {
     if ($("#lineChart").length) {
         var ctx = document.getElementById("lineChart");
         var revenue = $("#lineChart").data("revenue-per-month");
-        console.log(revenue);
-
+        console.log("Raw revenue:", revenue);
+    
+        // Nếu là chuỗi JSON, parse ra object
+        if (typeof revenue === "string") {
+            revenue = JSON.parse(revenue);
+        }
+    
+        // Tạo mảng 12 phần tử từ object
+        var revenueArray = Array.from({ length: 12 }, (_, i) => {
+            const value = revenue[i];
+            return value ? parseFloat(value) : 0;
+        });
+    
         var lineChart = new Chart(ctx, {
             type: "line",
             data: {
                 labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December",
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
                 ],
                 datasets: [
                     {
@@ -2890,12 +2891,13 @@ function init_charts() {
                         pointHoverBackgroundColor: "#fff",
                         pointHoverBorderColor: "rgba(220,220,220,1)",
                         pointBorderWidth: 1,
-                        data: revenue,
+                        data: revenueArray,
                     },
                 ],
             },
         });
     }
+    
 
     // Bar chart
 
