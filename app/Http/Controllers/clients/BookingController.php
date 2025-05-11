@@ -46,7 +46,7 @@ class BookingController extends Controller
         $totalPrice = $req->input('totalPrice');
         $tourId = $req->input('tourId');
         $userId = $this->getUserId();
-
+        $tour = $this->tour->getTourDetail($tourId);
         $voucherCode=$req->input('code');
         if($voucherCode){
             $voucher = Voucher::where('code', $voucherCode)
@@ -77,7 +77,7 @@ class BookingController extends Controller
             'numAdults' => $numAdults,
             'numChildren' => $numChildren,
             'phoneNumber' => $tel,
-            'totalPrice' => $totalPrice,
+            'totalPrice' => $tour->priceAdult*$numAdults+$tour->priceChild*$numChildren,
             'voucher_id' =>$voucher->id??null,
             'bookingDate'=>now()
         ];

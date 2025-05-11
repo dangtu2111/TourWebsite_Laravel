@@ -71,7 +71,6 @@ class TourDetailController extends Controller
         $tourId = $req->tourId;
         $message = $req->message;
         $star = $req->rating;
-
         $dataReview = [
             'tourId' => $tourId,
             'userId' => $userId,

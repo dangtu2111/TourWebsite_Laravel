@@ -137,8 +137,8 @@ return new class extends Migration
             $table->timestamp('timestamp')->nullable(); // Thêm cột timestamp nếu cần
         
             // Thiết lập các khóa ngoại
-            $table->foreign('tourId')->references('tourId')->on('tbl_tours')->onDelete('cascade');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tourId')->references('tourId')->on(table: 'tbl_tours')->onDelete('cascade');
+            $table->foreign('userId')->references('id')->on('tbl_users')->onDelete('cascade');
         });
         
         Schema::create('tbl_temp_images', function (Blueprint $table) {
