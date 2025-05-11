@@ -34,8 +34,6 @@ class ApiController extends Controller
         
 
         if ($user_login != null) {
-            $request->session()->put('username', $username);
-            $request->session()->put('avatar', $user->avatar);
             if($user->status=='b'){
                 return response()->json([
                     'success' => false,
